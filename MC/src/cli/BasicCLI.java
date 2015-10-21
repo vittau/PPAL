@@ -86,7 +86,6 @@ public class BasicCLI {
 		}
 	}
 
-	//TODO: Announcements to societies inside groups are not working correctly, but maybe the problem is here?
 	@Command(description = "Knowledge operator.")
 	public void knows(
 			@Param(name = "model", description = "Name of the society whose model will be used in evaluation.")
