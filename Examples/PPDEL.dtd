@@ -1,0 +1,30 @@
+<!ELEMENT model (societies, propositions, states, realstate?)>
+<!ATTLIST model
+	version CDATA #REQUIRED
+	name CDATA #IMPLIED>
+<!ELEMENT societies (socdef)+>
+<!ELEMENT socdef (#PCDATA)>
+<!ATTLIST socdef
+	id CDATA #REQUIRED
+	name CDATA #IMPLIED
+	size CDATA #REQUIRED>
+<!ELEMENT propositions (propdef)+>
+<!ELEMENT propdef (soc)*>
+<!ATTLIST propdef
+	id CDATA #REQUIRED
+	name CDATA #IMPLIED>
+<!ELEMENT soc (#PCDATA)>
+<!ATTLIST soc
+	id CDATA #REQUIRED>
+<!ELEMENT states (comb|state)+>
+<!ELEMENT comb (restrictions*)>
+<!ELEMENT prop (#PCDATA)>
+<!ATTLIST prop
+	id CDATA #REQUIRED
+	always CDATA #IMPLIED
+	mutex CDATA #IMPLIED>
+<!ELEMENT state (prop+)>
+<!ELEMENT restrictions (atleast|mutex|state)+>
+<!ELEMENT atleast (prop)+>
+<!ELEMENT mutex (prop)+>
+<!ELEMENT realstate (prop)+>

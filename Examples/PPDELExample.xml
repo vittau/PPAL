@@ -1,0 +1,109 @@
+<?xml version = "1.0"?>
+<!DOCTYPE model SYSTEM "PPDEL.dtd">
+<!-- Cards game example using the PPDEL DTD. -->
+<model version = "0.1" name = "Cards game (pop)">
+
+	<societies>
+		<socdef id = "a" name = "Alderaaneans" size="3"/>
+		<socdef id = "b" name = "Bespians" size="5"/>
+		<socdef id = "c" name = "Coruscanti" size="7"/>
+	</societies>
+
+	<propositions>
+		<propdef id = "ah0" name = "a has 0">
+			<soc id = "a"/>
+		</propdef>
+		<propdef id = "bh0" name = "b has 0">
+			<soc id = "b"/>
+		</propdef>
+		<propdef id = "ch0" name = "c has 0">
+			<soc id = "c"/>
+		</propdef>
+		<propdef id = "ah1" name = "a has 1">
+			<soc id = "a"/>
+		</propdef>
+		<propdef id = "bh1" name = "b has 1">
+			<soc id = "b"/>
+		</propdef>
+		<propdef id = "ch1" name = "c has 1">
+			<soc id = "c"/>
+		</propdef>
+		<propdef id = "ah2" name = "a has 2">
+			<soc id = "a"/>
+		</propdef>
+		<propdef id = "bh2" name = "b has 2">
+			<soc id = "b"/>
+		</propdef>
+		<propdef id = "ch2" name = "c has 2">
+			<soc id = "c"/>
+		</propdef>
+	</propositions>
+
+	<states>
+		<comb>
+			<restrictions>
+				<!-- Societies must have at least one card -->
+				<atleast>
+					<prop id = "ah0"/>
+					<prop id = "bh0"/>
+					<prop id = "ch0"/>
+				</atleast>
+				<atleast>
+					<prop id = "ah1"/>
+					<prop id = "bh1"/>
+					<prop id = "ch1"/>
+				</atleast>
+				<atleast>
+					<prop id = "ah2"/>
+					<prop id = "bh2"/>
+					<prop id = "ch2"/>
+				</atleast>
+				<!-- Different societies can't have the same card -->
+				<mutex>
+					<prop id = "ah0"/>
+					<prop id = "bh0"/>
+					<prop id = "ch0"/>
+				</mutex>
+				<mutex>
+					<prop id = "ah1"/>
+					<prop id = "bh1"/>
+					<prop id = "ch1"/>
+				</mutex>
+				<mutex>
+					<prop id = "ah2"/>
+					<prop id = "bh2"/>
+					<prop id = "ch2"/>
+				</mutex>
+				<!-- Societies must have at most one card -->
+				<mutex>
+					<prop id = "ah0"/>
+					<prop id = "ah1"/>
+					<prop id = "ah2"/>
+				</mutex>
+				<mutex>
+					<prop id = "bh0"/>
+					<prop id = "bh1"/>
+					<prop id = "bh2"/>
+				</mutex>
+				<mutex>
+					<prop id = "ch0"/>
+					<prop id = "ch1"/>
+					<prop id = "ch2"/>
+				</mutex>
+				<!--
+				Could have <state> as well restricting specific states from appearing.
+				-->
+			</restrictions>
+		</comb>
+		<!--
+		Could have <state> as well declaring specific states.
+		-->
+	</states>
+
+	<realstate>
+		<prop id = "ah0"/>
+		<prop id = "bh1"/>
+		<prop id = "ch2"/>
+	</realstate>
+	
+</model>

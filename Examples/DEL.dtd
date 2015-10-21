@@ -1,0 +1,19 @@
+<!ELEMENT model (agentsdef+, propositions+, restrictions*, realstate)>
+<!ATTLIST model
+    version CDATA #REQUIRED
+    name CDATA #IMPLIED>
+<!ELEMENT agentsdef (a)+>
+<!ELEMENT a (#PCDATA)>
+<!ATTLIST a
+    id CDATA #REQUIRED
+    prefix CDATA #REQUIRED>
+<!ELEMENT propositions (generic)+>
+<!ELEMENT generic (name, agents)+>
+<!ATTLIST generic
+    id CDATA #REQUIRED>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT agents (#PCDATA)>
+<!ELEMENT restrictions (rule|mutex)+>
+<!ELEMENT rule (#PCDATA)>
+<!ELEMENT mutex (#PCDATA)>
+<!ELEMENT realstate (#PCDATA)>
