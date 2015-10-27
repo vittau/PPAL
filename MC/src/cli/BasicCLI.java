@@ -86,6 +86,7 @@ public class BasicCLI {
 		}
 	}
 
+	//TODO: Bug: After announcement, anything like k a ah0&bh1&ch2 ah1000 is returning the ratio.
 	@Command(description = "Knowledge operator.")
 	public void knows(
 			@Param(name = "model", description = "Name of the society whose model will be used in evaluation.")
@@ -229,8 +230,8 @@ public class BasicCLI {
 				socMparent.getSocieties().remove(pop);
 				socMparent.getSocieties().add(newGroup);
 			}
+			System.out.println("\"" + precondition + "\" announced to \"" + population + "\" with ratio " + ratio + " successfully.");
 		}
-		System.out.println("\"" + precondition + "\" announced to \"" + population + "\" with ratio " + ratio + " successfully.");
 	}
 
 	//TODO: Implement the rest of the basic command-line user interface.
