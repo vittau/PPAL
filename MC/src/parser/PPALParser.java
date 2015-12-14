@@ -1,16 +1,14 @@
 package parser;
 
-import controller.BasicSimulationState;
 import controller.SimulationState;
-import nu.xom.ParsingException;
 
 import java.io.File;
 import java.io.IOException;
 
 /**
- * This interface represents a PPDEL input file parser.
+ * This interface represents a PPAL input file parser.
  */
-public interface PPDELParser {
+public interface PPALParser {
 	/**
 	 * Checks if a document is valid.
 	 * @param file Document file.
@@ -20,7 +18,7 @@ public interface PPDELParser {
 	boolean isDocumentValid(File file) throws IOException;
 
 	/**
-	 * Parses a PPDEL input document.
+	 * Parses a PPAL input document.
 	 * @param file Document file.
 	 * @return A SimulationState resultant of the parsed document.
 	 * @throws IllegalArgumentException When the document is not valid.

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * This class implements a basic state model of the PPDEL logic.
+ * This class implements a basic state model of the PPAL logic.
  */
 public class BasicStateModel implements StateModel {
 

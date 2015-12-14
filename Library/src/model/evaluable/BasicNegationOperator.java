@@ -4,7 +4,7 @@ import model.societies.Society;
 import model.structures.State;
 
 /**
- * This class implements a fuzzy negation unary operator of the PPDEL logic.
+ * This class implements a fuzzy negation unary operator of the PPAL logic.
  */
 public class BasicNegationOperator implements UnaryOperator {
 

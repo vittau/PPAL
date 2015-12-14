@@ -4,7 +4,7 @@ import model.structures.SocietyModel;
 import model.structures.State;
 
 /**
- * This class implements a basic evaluation function of the PPDEL logic.
+ * This class implements a basic evaluation function of the PPAL logic.
  */
 public class BasicEvaluationFunction implements EvaluationFunction {
 

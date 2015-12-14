@@ -4,7 +4,7 @@ import model.societies.Society;
 import model.structures.State;
 
 /**
- * This interface represents a structure of the PPDEL logic capable of evaluation to a real number, given a Society (which contains a SocietyModel) and a State.
+ * This interface represents a structure of the PPAL logic capable of evaluation to a real number, given a Society (which contains a SocietyModel) and a State.
  */
 public interface Evaluable {
 

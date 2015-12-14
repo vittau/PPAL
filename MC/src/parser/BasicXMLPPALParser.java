@@ -16,9 +16,9 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * This class reads a PPDEL XML input file according to the PPDEL Document Type Definition (DTD) and creates the related structures.
+ * This class reads a PPAL XML input file according to the PPAL Document Type Definition (DTD) and creates the related structures.
  */
-public class BasicXMLPPDELParser implements PPDELParser {
+public class BasicXMLPPALParser implements PPALParser {
 
 	private Builder parser = new Builder();
 
@@ -26,7 +26,7 @@ public class BasicXMLPPDELParser implements PPDELParser {
 
 	private EvaluationFunction evf;
 
-	public BasicXMLPPDELParser(EvaluationFunction evf) {
+	public BasicXMLPPALParser(EvaluationFunction evf) {
 		this.evf = evf;
 	}
 
@@ -49,7 +49,7 @@ public class BasicXMLPPDELParser implements PPDELParser {
 		}
 
 		if (document.getDocType().getSystemID() != null) {
-			if (!document.getDocType().getSystemID().toLowerCase().contains("ppdel.dtd")) {
+			if (!document.getDocType().getSystemID().toLowerCase().contains("ppal.dtd")) {
 				throw new IllegalArgumentException("Unexpected DTD.");
 			}
 		} else {

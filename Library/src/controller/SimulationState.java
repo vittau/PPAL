@@ -6,7 +6,7 @@ import model.structures.State;
 import java.util.Set;
 
 /**
- * This interface represents a PPDEL simulation state.
+ * This interface represents a PPAL simulation state.
  */
 public interface SimulationState {
 

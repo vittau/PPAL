@@ -5,7 +5,7 @@ import model.structures.SocietyModel;
 import java.util.Set;
 
 /**
- * This interface represents a society of the PPDEL logic.
+ * This interface represents a society of the PPAL logic.
  */
 public interface Society {
 

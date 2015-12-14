@@ -4,7 +4,7 @@ import model.structures.SocietyModel;
 import model.structures.State;
 
 /**
- * This interface represents an evaluation function of the PPDEL logic.
+ * This interface represents an evaluation function of the PPAL logic.
  */
 public interface EvaluationFunction {
 

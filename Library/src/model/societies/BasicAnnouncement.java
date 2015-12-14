@@ -4,7 +4,7 @@ import model.evaluable.Evaluable;
 import model.structures.SocietyModel;
 
 /**
- * This class implements an announcement of the PPDEL logic.
+ * This class implements an announcement of the PPAL logic.
  */
 public class BasicAnnouncement {
 

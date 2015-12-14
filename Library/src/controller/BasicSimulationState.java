@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * This class implements a PPDEL simulation state.
+ * This class implements a PPAL simulation state.
  */
 public class BasicSimulationState implements SimulationState {
 
@@ -56,8 +56,7 @@ public class BasicSimulationState implements SimulationState {
 			else {
 				return null;
 			}
-			if(found)
-				continue;
+			if(found) { }
 			else
 				return null;
 		}

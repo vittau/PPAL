@@ -7,7 +7,7 @@ import model.structures.State;
 import java.util.Set;
 
 /**
- * This class implements a fuzzy knowledge ternary operator (Populations or Groups) of the PPDEL logic.
+ * This class implements a fuzzy knowledge ternary operator (Populations or Groups) of the PPAL logic.
  */
 public class BasicKnowledgeOperator implements TernaryOperator {
 

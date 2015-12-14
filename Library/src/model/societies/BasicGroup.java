@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * This class implements a basic group of the PPDEL logic.
+ * This class implements a basic group of the PPAL logic.
  */
 public class BasicGroup implements Group {
 

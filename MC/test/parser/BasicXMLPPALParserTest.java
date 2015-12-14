@@ -17,15 +17,15 @@ import static org.testng.Assert.*;
 /**
  * Created by Vitor on 01/09/2015.
  */
-public class BasicXMLPPDELParserTest {
+public class BasicXMLPPALParserTest {
 
     @Test
-    public void ppdelExampleTest() {
+    public void ppalExampleTest() {
         final EvaluationFunction evf = new BasicEvaluationFunction();
 
-        PPDELParser parser = new BasicXMLPPDELParser(evf);
+        PPALParser parser = new BasicXMLPPALParser(evf);
         try {
-            assertTrue(parser.isDocumentValid(new File("./Examples./PPDELExample.xml")), "The document is invalid.");
+            assertTrue(parser.isDocumentValid(new File("./Examples./PPALExample.xml")), "The document is invalid.");
         } catch (IOException e) {
             fail("Failed to read the document.");
         }
@@ -33,7 +33,7 @@ public class BasicXMLPPDELParserTest {
 
         SimulationState simulationState = null;
         try {
-            simulationState = parser.parseDocument(new File("./Examples/PPDELExample.xml"));
+            simulationState = parser.parseDocument(new File("./Examples/PPALExample.xml"));
         } catch (IOException e) {
             fail("Failed to read the document.");
         }

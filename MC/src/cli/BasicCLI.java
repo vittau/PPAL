@@ -12,8 +12,8 @@ import model.societies.Society;
 import model.structures.BasicState;
 import model.structures.SocietyModel;
 import model.structures.State;
-import parser.BasicXMLPPDELParser;
-import parser.PPDELParser;
+import parser.BasicXMLPPALParser;
+import parser.PPALParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,11 +23,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * This class implements a basic command-line user interface for the PPDEL Model Checker.
+ * This class implements a basic command-line user interface for the PPAL Model Checker.
  */
 public class BasicCLI {
 
-	private static final String CONSOLE_NAME = "ppdelmc";
+	private static final String CONSOLE_NAME = "ppalmc";
 	private static final String HINT_TEXT =
 			" _____  _____  _____  ______ _        __  __           _      _    _____ _               _\n" +
 					"|  __ \\|  __ \\|  __ \\|  ____| |      |  \\/  |         | |    | |  / ____| |             | |\n" +
@@ -39,10 +39,10 @@ public class BasicCLI {
 			"Enter \"?list\" for a list of available commands. For detailed info enter \"?help COMMAND_NAME\". Enter \"exit\" to quit.";
 
 	private final EvaluationFunction evf = new BasicEvaluationFunction();
-	private PPDELParser parser = new BasicXMLPPDELParser(evf);
+	private PPALParser parser = new BasicXMLPPALParser(evf);
 	private SimulationState simulationState = null;
 
-	@Command(description = "Current version of the PPDEL Model Checker.")
+	@Command(description = "Current version of the PPAL Model Checker.")
 	public String version() {
 		return "0.1";
 	}
@@ -52,7 +52,7 @@ public class BasicCLI {
 			@Param(name = "path", description = "Absolute or relative path to the model file.")
 			String path
 	) {
-		File file = new File("./Examples./PPDELExample.xml");
+		File file = new File("./Examples./PPALExample.xml");
 		//File file = new File(path);
 
 		System.out.println("Opening file: " + path);

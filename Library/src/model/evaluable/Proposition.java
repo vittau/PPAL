@@ -1,7 +1,7 @@
 package model.evaluable;
 
 /**
- * This interface represents a logic proposition of the PPDEL logic.
+ * This interface represents a logic proposition of the PPAL logic.
  */
 public interface Proposition extends Evaluable {
 

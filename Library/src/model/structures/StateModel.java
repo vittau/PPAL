@@ -3,7 +3,7 @@ package model.structures;
 import java.util.Set;
 
 /**
- * This interface represents a state model of the PPDEL logic.
+ * This interface represents a state model of the PPAL logic.
  */
 public interface StateModel {
 

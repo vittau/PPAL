@@ -4,7 +4,7 @@ import model.societies.Society;
 import model.structures.State;
 
 /**
- * This class implements a basic implication function of the PPDEL logic.
+ * This class implements a basic implication function of the PPAL logic.
  */
 public class BasicImplicationOperator implements BinaryOperator {
 

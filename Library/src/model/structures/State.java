@@ -5,7 +5,7 @@ import model.evaluable.Proposition;
 import java.util.Set;
 
 /**
- * This interface represents a state of the PPDEL logic.
+ * This interface represents a state of the PPAL logic.
  */
 public interface State {
 

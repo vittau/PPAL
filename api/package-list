@@ -1,4 +1,7 @@
+cli
+combinatorics
 controller
+integrationTests
 model.evaluable
 model.societies
 model.structures

@@ -1,6 +1,6 @@
 <?xml version = "1.0"?>
-<!DOCTYPE model SYSTEM "PPDEL.dtd">
-<!-- Cards game example using the PPDEL DTD. -->
+<!DOCTYPE model SYSTEM "PPAL.dtd">
+<!-- Cards game example using the PPAL DTD. -->
 <model version = "0.1" name = "Cards game (pop)">
 
 	<societies>

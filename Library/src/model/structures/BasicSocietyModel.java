@@ -6,7 +6,7 @@ import model.societies.Society;
 import java.util.*;
 
 /**
- * This class implements a basic society model of the PPDEL logic.
+ * This class implements a basic society model of the PPAL logic.
  */
 public class BasicSocietyModel implements SocietyModel {
 
@@ -104,6 +104,11 @@ public class BasicSocietyModel implements SocietyModel {
 	}
 
 	@Override public BasicSocietyModel clone() {
+		try {
+			super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
 		BasicSocietyModel basicSocietyModel = new BasicSocietyModel(stateModel);
 
 		basicSocietyModel.edgeMatrix = new HashMap<Society, Map<State, Set<State>>>();

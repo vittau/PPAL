@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
 import java.util.Set;
 
 /**
- * This class implements a basic population of the PPDEL logic..
+ * This class implements a basic population of the PPAL logic..
  */
 public class BasicPopulation implements Population {
 

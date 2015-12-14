@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * This class implements a basic state of the PPDEL logic.
+ * This class implements a basic state of the PPAL logic.
  */
 public class BasicState implements State {
 
