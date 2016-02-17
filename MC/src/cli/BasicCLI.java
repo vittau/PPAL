@@ -86,7 +86,7 @@ public class BasicCLI {
 		}
 	}
 
-	//TODO: Bug: After announcement, anything like k a ah0&bh1&ch2 ah1000 is returning the ratio.
+	//TODO: Bug: After announcement, anything like k a ah0&bh1&ch2 a ah1000 is returning the ratio.
 	@Command(description = "Knowledge operator.")
 	public void knows(
 			@Param(name = "model", description = "Name of the society whose model will be used in evaluation.")
@@ -148,7 +148,7 @@ public class BasicCLI {
 		if(sm == null) { //Group
 			result = 0.0;
 			for(Society s : socM.getSocieties()) {
-				Double knowsResult = knowsInside(s, st, prop, s);
+				Double knowsResult = knowsInside(s, st, prop, soc);
 				if(knowsResult == null) {
 					return null;
 				}
@@ -220,6 +220,7 @@ public class BasicCLI {
 
 			Group newGroup = BasicAnnouncement.announce(pop, pre, ratioD);
 
+			//TODO: Check for bugs here. The resulting group appears to not have the new populations correctly.
 			String[] socMparents = model.split("\\.");
 			if(socMparents.length == 1) {
 				simulationState.removeSociety(pop);

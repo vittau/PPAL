@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * This interface represents a society model of the PPAL logic.
  */
-public interface SocietyModel extends StateModel {
+public interface SocietyModel extends StateModel, Cloneable {
 
 	/**
 	 * Set of states connected to a given state by edges of a given society.
