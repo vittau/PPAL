@@ -56,6 +56,6 @@ public class BasicKnowledgeOperator implements TernaryOperator {
 			if(ev.eval(soc, state) < 1.0)
 				return 0.0;
 		}
-		return 1.0;
+		return ev.eval(soc, s);
 	}
 }
