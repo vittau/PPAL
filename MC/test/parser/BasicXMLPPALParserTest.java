@@ -25,23 +25,14 @@ public class BasicXMLPPALParserTest {
 	private static final Double DELTA = 0.001;
 
 	private static final EvaluationFunction EVF = new BasicEvaluationFunction();
-	private SimulationState simulationState = null;
+	private static final PPALParser PARSER = new BasicXMLPPALParser(EVF);
+	private SimulationState simulationState;
 
 	@BeforeMethod
-	public void beforeTest() {
-
-
-		PPALParser parser = new BasicXMLPPALParser(EVF);
+	public void loadDocument() {
 		try {
 			File file = new File("../Examples/PPALExample.xml");
-			assertTrue(parser.isDocumentValid(file), "The document is invalid.");
-		} catch (IOException e) {
-			fail("Failed to read the document.");
-		}
-
-		try {
-			File file = new File("../Examples/PPALExample.xml");
-			simulationState = parser.parseDocument(file);
+			simulationState = PARSER.parseDocument(file);
 		} catch (IOException e) {
 			fail("Failed to read the document.");
 		}
@@ -83,6 +74,18 @@ public class BasicXMLPPALParserTest {
 		Society a_old = simulationState.getSociety("a.a_o");
 		assertEquals(a_old.getSize(), 0.9, DELTA); //Part that received the announcement.
 		assertEquals(a_new.getSize(), 2.1, DELTA); //Part that did not receive the announcement.
+	}
+
+	@Test
+	public void OriginalNotKnowsArbitraryPropTest() {
+
+		State realState = simulationState.getRealState();
+
+		Population a = (Population) simulationState.getSociety("a");
+
+		//Checking if the original society in fact does not know an arbitrary proposition.
+		BasicKnowledgeOperator bko = new BasicKnowledgeOperator(a.getSocietyModel(), new BasicProposition("unknown", EVF));
+		assertEquals(bko.eval(a, realState), 0.0, DELTA);
 	}
 
 	@Test

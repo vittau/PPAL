@@ -67,4 +67,14 @@ public class BasicProposition implements Proposition {
 	@Override public double eval(Society soc, State s) {
 		return evf.eval(this, soc.getSocietyModel(), s);
 	}
+
+	@Override public String toString() {
+		if(isNeg) {
+			return "!" + name;
+		}
+		else {
+			return name;
+		}
+
+	}
 }

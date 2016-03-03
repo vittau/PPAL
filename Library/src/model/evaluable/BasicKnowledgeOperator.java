@@ -52,7 +52,7 @@ public class BasicKnowledgeOperator implements TernaryOperator {
 	private double evalKP(Society soc, State s) {
 		Set<State> neighbourStates = sm.getNeighbourStates(soc, s);
 		for(State state : neighbourStates) {
-			System.out.println(soc.getName() + ": " + ev.eval(soc, state));
+			//System.out.println(soc.getName() + ": " + ev.eval(soc, state));
 			if(ev.eval(soc, state) < 1.0)
 				return 0.0;
 		}
