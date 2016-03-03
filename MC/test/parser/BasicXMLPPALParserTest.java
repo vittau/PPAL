@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 
 import static org.testng.Assert.*;
 
@@ -104,6 +105,15 @@ public class BasicXMLPPALParserTest {
 		simulationState.insertSociety(newGroup);
 
 		Society a_new = simulationState.getSociety("a.a_n");
+
+		System.out.println("Neighbour states of a_new:");
+		Set<State> neighbourStates = a_new.getSocietyModel().getNeighbourStates(a_new, realState);
+		if(neighbourStates == null)
+			System.out.println("null");
+		else if(neighbourStates.isEmpty())
+			System.out.println("Empty");
+		else for(State st : neighbourStates)
+			System.out.println(st);
 
 		//Checking if the new society in fact does not know an arbitrary proposition.
 		BasicKnowledgeOperator bko = new BasicKnowledgeOperator(a_new.getSocietyModel(), new BasicProposition("unknown", EVF));
