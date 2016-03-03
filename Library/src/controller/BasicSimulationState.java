@@ -24,7 +24,7 @@ public class BasicSimulationState implements SimulationState {
 		if(societiesMap == null) {
 			societiesMap = new HashMap<String, Society>();
 		}
-		if(societies.contains(society)) {
+		if(societies.contains(society) || societiesMap.containsKey(society.getName())) {
 			throw new IllegalStateException("Society already inserted.");
 		}
 		societiesMap.put(society.getName(), society);

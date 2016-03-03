@@ -226,4 +226,44 @@ public class BasicXMLPPALParserTest {
 		BasicKnowledgeOperator bko = new BasicKnowledgeOperator(a.getSocietyModel(), ch2);
 		assertEquals(bko.eval(a, realState), 0.7, DELTA);
 	}
+
+	@Test
+	public void NewNewInfersPropTest() {
+
+		State realState = simulationState.getRealState();
+
+		Proposition bh1 = new BasicProposition("bh1", EVF);
+		Proposition ch2 = new BasicProposition("ch2", EVF);
+
+		//Announcing bh1 to a with ratio 0.7
+		Proposition pre = bh1;
+		Population a = (Population) simulationState.getSociety("a");
+		Double ratio = 0.7;
+
+		Group newGroup = BasicAnnouncement.announce(a, pre, ratio);
+
+		simulationState.removeSociety(a);
+		simulationState.insertSociety(newGroup);
+
+		Population a_old = (Population) simulationState.getSociety("a.a_o");
+
+		Proposition pre2 = ch2;
+		Double ratio2 = 0.3;
+
+		Group newGroup2 = BasicAnnouncement.announce(a_old, pre2, ratio2);
+
+		simulationState.removeSociety(a_old);
+		simulationState.insertSociety(newGroup2);
+
+		for(Society s : simulationState.getSocieties()) {
+			System.out.println(s);
+			System.out.println("---");
+		}
+
+		Society a_old_new = simulationState.getSociety("a_o.a_o_n");
+
+		//Checking if the new society can infer bh1 from the announcement.
+		BasicKnowledgeOperator bko = new BasicKnowledgeOperator(a_old_new.getSocietyModel(), bh1);
+		assertEquals(bko.eval(a_old_new, realState), 1.0, DELTA);
+	}
 }
