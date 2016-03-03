@@ -9,14 +9,13 @@ import model.societies.Society;
 import model.structures.BasicState;
 import model.structures.State;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Set;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.fail;
 
 /**
  * Created by Vitor on 01/09/2015.
@@ -255,7 +254,7 @@ public class BasicXMLPPALParserTest {
 		simulationState.removeSociety(a_old);
 		simulationState.insertSociety(newGroup2);
 
-		for(Society s : simulationState.getSocieties()) {
+		for (Society s : simulationState.getSocieties()) {
 			System.out.println(s);
 			System.out.println("---");
 		}
