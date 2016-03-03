@@ -24,7 +24,7 @@ public class BasicSimulationState implements SimulationState {
 		if(societiesMap == null) {
 			societiesMap = new HashMap<String, Society>();
 		}
-		if(societies.contains(society) || societiesMap.containsKey(society.getName())) {
+		if(societiesMap.containsKey(society.getName()) || societies.contains(society)) {
 			throw new IllegalStateException("Society already inserted.");
 		}
 		societiesMap.put(society.getName(), society);
@@ -33,6 +33,7 @@ public class BasicSimulationState implements SimulationState {
 
 	@Override public void removeSociety(Society society) {
 		societies.remove(society);
+		societiesMap.remove(society.getName());
 	}
 
 	@Override public Set<Society> getSocieties() {

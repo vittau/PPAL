@@ -26,14 +26,14 @@ public class BasicXMLPPALParserTest {
 	private static final Double DELTA = 0.001;
 
 	private static final EvaluationFunction EVF = new BasicEvaluationFunction();
-	private static final PPALParser PARSER = new BasicXMLPPALParser(EVF);
 	private SimulationState simulationState;
 
 	@BeforeMethod
 	public void loadDocument() {
 		try {
 			File file = new File("../Examples/PPALExample.xml");
-			simulationState = PARSER.parseDocument(file);
+			BasicXMLPPALParser parser = new BasicXMLPPALParser(EVF);
+			simulationState = parser.parseDocument(file);
 		} catch (IOException e) {
 			fail("Failed to read the document.");
 		}
