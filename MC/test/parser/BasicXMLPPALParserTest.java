@@ -132,7 +132,7 @@ public class BasicXMLPPALParserTest {
 	}
 
 	@Test
-	public void NewInferPropTest() {
+	public void NewInfersPropTest() {
 
 		State realState = simulationState.getRealState();
 
@@ -156,7 +156,7 @@ public class BasicXMLPPALParserTest {
 	}
 
 	@Test
-	public void OldNotKnowAnnouncedPropTest() {
+	public void OldNotKnowsAnnouncedPropTest() {
 
 		State realState = simulationState.getRealState();
 
@@ -180,7 +180,7 @@ public class BasicXMLPPALParserTest {
 	}
 
 	@Test
-	public void GroupKnowAnnouncedRatioTest() {
+	public void GroupKnowsAnnouncedRatioTest() {
 
 		State realState = simulationState.getRealState();
 
