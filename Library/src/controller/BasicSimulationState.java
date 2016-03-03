@@ -39,7 +39,8 @@ public class BasicSimulationState implements SimulationState {
 		return societies;
 	}
 
-	@Override public Society getSociety(String name) { //TODO: Appears to be returning null where it shouldn't.
+	//TODO: Appears to be returning null where it shouldn't.
+	@Override public Society getSociety(String name) {
 		String[] names = name.split("\\.");
 		Society result = societiesMap.get(names[0]);
 		for(int i=1; i < names.length; i++) {
