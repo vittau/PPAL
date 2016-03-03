@@ -210,7 +210,7 @@ public class BasicCLI {
 			Society soc = simulationState.getSociety(population);
 			Population pop;
 			if (!(soc instanceof Population)) {
-				System.out.println("Only populations can be announced to.");
+				System.out.println("Only populations can be announced to (in the future, group announcements will be implemented).");
 				return;
 			}
 			else
