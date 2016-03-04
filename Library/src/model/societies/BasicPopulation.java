@@ -51,4 +51,16 @@ public class BasicPopulation implements Population {
 		result += " (size = " + df.format(size) + ")";
 		return result;
 	}
+
+	@Override public boolean equals(Object o) {
+		if(o instanceof Society) {
+			Society society = (Society) o;
+			String firstName = society.getName().split("\\.")[0];
+			String thisFirstName = name.split("\\.")[0];
+			return thisFirstName.equals(firstName);
+		}
+		else {
+			return false;
+		}
+	}
 }
