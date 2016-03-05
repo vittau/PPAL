@@ -66,12 +66,15 @@ public class BasicGroup implements Group {
 	@Override public boolean equals(Object o) {
 		if(o instanceof Society) {
 			Society society = (Society) o;
-			String firstName = society.getName().split("_")[0];
-			String thisFirstName = name.split("_")[0];
-			return thisFirstName.equals(firstName);
+			String socName = society.getName();
+			return name.equals(socName);
 		}
 		else {
 			return false;
 		}
+	}
+
+	@Override public int hashCode() {
+		return name.hashCode();
 	}
 }
