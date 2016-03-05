@@ -86,7 +86,6 @@ public class BasicCLI {
 		}
 	}
 
-	//TODO: Bug: After announcement, anything like k a ah0&bh1&ch2 a ah1000 is returning the ratio.
 	@Command(description = "Knowledge operator.")
 	public void knows(
 			@Param(name = "model", description = "Name of the society whose model will be used in evaluation.")

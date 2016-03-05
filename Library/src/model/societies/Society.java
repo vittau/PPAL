@@ -32,4 +32,6 @@ public interface Society {
 	 * @return The name of this society.
 	 */
 	String getName();
+
+	//TODO: Should have an id to identify it in the simulationState, and a name, to locate its model in the operators. This should fix the knows problems.
 }
