@@ -224,6 +224,8 @@ public class BasicCLI {
 			if(socMparents.length == 1) {
 				simulationState.removeSociety(pop);
 				simulationState.insertSociety(newGroup);
+				for(Society s : newGroup.getSocieties())
+					simulationState.insertSociety(s);
 			}
 			else {
 				Society socMparent = simulationState.getSociety(socMparents[socMparents.length - 2]);

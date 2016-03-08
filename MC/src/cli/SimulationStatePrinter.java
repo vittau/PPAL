@@ -25,6 +25,5 @@ public class SimulationStatePrinter {
         for(Society soc : societies) {
             System.out.println(soc);
         }
-        //TODO: Implement the rest of this printing method.
     }
 }
