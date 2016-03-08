@@ -60,18 +60,13 @@ public class BasicXMLPPALParserTest {
 
 		Group newGroup = BasicAnnouncement.announce(a, pre, ratio);
 
-		String[] socMparents = "a".split("\\.");
-		if (socMparents.length == 1) {
-			simulationState.removeSociety(a);
-			simulationState.insertSociety(newGroup);
-		} else {
-			Society socMparent = simulationState.getSociety(socMparents[socMparents.length - 2]);
-			socMparent.getSocieties().remove(a);
-			socMparent.getSocieties().add(newGroup);
-		}
+		simulationState.removeSociety(a);
+		simulationState.insertSociety(newGroup);
+		for(Society s : newGroup.getSocieties())
+			simulationState.insertSociety(s);
 
-		Society a_new = simulationState.getSociety("a.a_n");
-		Society a_old = simulationState.getSociety("a.a_o");
+		Society a_new = simulationState.getSociety("a_n");
+		Society a_old = simulationState.getSociety("a_o");
 		assertEquals(a_old.getSize(), 0.9, DELTA); //Part that received the announcement.
 		assertEquals(a_new.getSize(), 2.1, DELTA); //Part that did not receive the announcement.
 	}
@@ -102,8 +97,10 @@ public class BasicXMLPPALParserTest {
 
 		simulationState.removeSociety(a);
 		simulationState.insertSociety(newGroup);
+		for(Society s : newGroup.getSocieties())
+			simulationState.insertSociety(s);
 
-		Society a_new = simulationState.getSociety("a.a_n");
+		Society a_new = simulationState.getSociety("a_n");
 
 		//Checking if the new society in fact does not know an arbitrary proposition.
 		BasicKnowledgeOperator bko = new BasicKnowledgeOperator(a_new.getSocietyModel(), new BasicProposition("unknown", EVF));
@@ -126,8 +123,10 @@ public class BasicXMLPPALParserTest {
 
 		simulationState.removeSociety(a);
 		simulationState.insertSociety(newGroup);
+		for(Society s : newGroup.getSocieties())
+			simulationState.insertSociety(s);
 
-		Society a_new = simulationState.getSociety("a.a_n");
+		Society a_new = simulationState.getSociety("a_n");
 
 		//Checking if the new society knows the announced proposition.
 		BasicKnowledgeOperator bko = new BasicKnowledgeOperator(a_new.getSocietyModel(), bh1);
@@ -150,8 +149,10 @@ public class BasicXMLPPALParserTest {
 
 		simulationState.removeSociety(a);
 		simulationState.insertSociety(newGroup);
+		for(Society s : newGroup.getSocieties())
+			simulationState.insertSociety(s);
 
-		Society a_new = simulationState.getSociety("a.a_n");
+		Society a_new = simulationState.getSociety("a_n");
 
 		//Checking if the new society can infer ch2 from the announcement.
 		BasicKnowledgeOperator bko = new BasicKnowledgeOperator(a_new.getSocietyModel(), ch2);
@@ -174,6 +175,8 @@ public class BasicXMLPPALParserTest {
 
 		simulationState.removeSociety(a);
 		simulationState.insertSociety(newGroup);
+		for(Society s : newGroup.getSocieties())
+			simulationState.insertSociety(s);
 
 		Society a_old = simulationState.getSociety("a_o");
 
@@ -198,6 +201,8 @@ public class BasicXMLPPALParserTest {
 
 		simulationState.removeSociety(a);
 		simulationState.insertSociety(newGroup);
+		for(Society s : newGroup.getSocieties())
+			simulationState.insertSociety(s);
 
 		//Checking if the group knows the announced proposition with the announced ratio.
 		BasicKnowledgeOperator bko = new BasicKnowledgeOperator(a.getSocietyModel(), bh1);
@@ -220,6 +225,8 @@ public class BasicXMLPPALParserTest {
 
 		simulationState.removeSociety(a);
 		simulationState.insertSociety(newGroup);
+		for(Society s : newGroup.getSocieties())
+			simulationState.insertSociety(s);
 
 		//Checking if the group can infer ch2 from the announcement with the announced ratio.
 		BasicKnowledgeOperator bko = new BasicKnowledgeOperator(a.getSocietyModel(), ch2);
@@ -243,8 +250,10 @@ public class BasicXMLPPALParserTest {
 
 		simulationState.removeSociety(a);
 		simulationState.insertSociety(newGroup);
+		for(Society s : newGroup.getSocieties())
+			simulationState.insertSociety(s);
 
-		Population a_old = (Population) simulationState.getSociety("a.a_o");
+		Population a_old = (Population) simulationState.getSociety("a_o");
 
 		Proposition pre2 = ch2;
 		Double ratio2 = 0.3;
@@ -253,13 +262,15 @@ public class BasicXMLPPALParserTest {
 
 		simulationState.removeSociety(a_old);
 		simulationState.insertSociety(newGroup2);
+		for(Society s : newGroup2.getSocieties())
+			simulationState.insertSociety(s);
 
 		for (Society s : simulationState.getSocieties()) {
 			System.out.println(s);
 			System.out.println("---");
 		}
 
-		Society a_old_new = simulationState.getSociety("a_o.a_o_n");
+		Society a_old_new = simulationState.getSociety("a_o_n");
 
 		//Checking if the new society can infer bh1 from the announcement.
 		BasicKnowledgeOperator bko = new BasicKnowledgeOperator(a_old_new.getSocietyModel(), bh1);

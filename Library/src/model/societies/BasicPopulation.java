@@ -61,8 +61,8 @@ public class BasicPopulation implements Population {
 	@Override public boolean equals(Object o) {
 		if(o instanceof Society) {
 			Society society = (Society) o;
-			String socId = society.getId();
-			return id.equals(socId);
+			String socName = society.getName();
+			return id.equals(socName);
 		}
 		else {
 			return false;
@@ -70,6 +70,6 @@ public class BasicPopulation implements Population {
 	}
 
 	@Override public int hashCode() {
-		return id.hashCode();
+		return name.hashCode();
 	}
 }
