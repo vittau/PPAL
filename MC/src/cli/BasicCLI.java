@@ -35,7 +35,7 @@ public class BasicCLI {
 					" |  ___/|  ___/ /\\ \\ | |      | |\\/| |/ _ \\ / _` |/ _ \\ | | |    | '_ \\ / _ \\/ __| |/ / _ \\ '__|\n" +
 					" | |    | |  / ____ \\| |____  | |  | | (_) | (_| |  __/ | | |____| | | |  __/ (__|   <  __/ |   \n" +
 					" |_|    |_| /_/    \\_\\______| |_|  |_|\\___/ \\__,_|\\___|_|  \\_____|_| |_|\\___|\\___|_|\\_\\___|_|\n" +
-			"0.1 (First Flight) - by Vitor Machado (http://www.cos.ufrj.br/~vmachado/)\n" +
+			"0.2 (Second Flight) - by Vitor Machado (http://www.cos.ufrj.br/~vmachado/)\n" +
 			"Enter \"?list\" for a list of available commands. For detailed info enter \"?help COMMAND_NAME\". Enter \"exit\" to quit.";
 
 	private final EvaluationFunction evf = new BasicEvaluationFunction();
@@ -218,16 +218,15 @@ public class BasicCLI {
 
 			Group newGroup = BasicAnnouncement.announce(pop, pre, ratioD);
 
-			//TODO: Check for bugs here.
-			String[] socMparents = model.split("\\.");
-			if(socMparents.length == 1) {
+			String parent = model.replaceFirst("_.$", "");
+			if(parent.equals(model)) {
 				simulationState.removeSociety(pop);
 				simulationState.insertSociety(newGroup);
 				for(Society s : newGroup.getSocieties())
 					simulationState.insertSociety(s);
 			}
 			else {
-				Society socMparent = simulationState.getSociety(socMparents[socMparents.length - 2]);
+				Society socMparent = simulationState.getSociety(parent);
 				socMparent.getSocieties().remove(pop);
 				socMparent.getSocieties().add(newGroup);
 			}

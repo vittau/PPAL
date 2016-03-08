@@ -58,14 +58,16 @@ public class BasicGroup implements Group {
 		String result = id + " (" + name + ")";
 		DecimalFormat df = new DecimalFormat("#.####");
 		df.setRoundingMode(RoundingMode.HALF_DOWN);
-		result += " (size = " + df.format(getSize()) + ")\n";
+		result += " (size = " + df.format(getSize()) + ") :: [";
 		Iterator<Society> iterator = societies.iterator();
-		while(iterator.hasNext()) {
-			result += name + "->" + iterator.next();
-			if(iterator.hasNext()) {
-				result += "\n";
+		while (iterator.hasNext()) {
+			Society soc = iterator.next();
+			result += soc.getId() + " (" + soc.getName() + ")";
+			if (iterator.hasNext()) {
+				result += ", ";
 			}
 		}
+		result += "]";
 		return result;
 	}
 
