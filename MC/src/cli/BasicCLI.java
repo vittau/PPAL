@@ -205,9 +205,11 @@ public class BasicCLI {
 				return;
 			}
 
+			//TODO: Should fetch this in a way where populations are not mistaken with groups after announcements. Should probably be model here.
 			Society soc = simulationState.getSociety(population);
 			Population pop;
 			if (!(soc instanceof Population)) {
+				//TODO: Implement group announcements.
 				System.out.println("Only populations can be announced to (in the future, group announcements will be implemented).");
 				return;
 			}
