@@ -30,11 +30,11 @@ public interface SimulationState {
 	Set<Society> getSocieties();
 
 	/**
-	 * Fetches a society by it's name.
-	 * @param name Name of the society to fetch.
-	 * @return A society with the given name, or null if no such society exists.
+	 * Fetches a society by it's id.
+	 * @param id Id of the society to fetch.
+	 * @return A society with the given id, or null if no such society exists.
 	 */
-	Society getSociety(String name);
+	Society getSociety(String id);
 
 	/**
 	 * Sets the real state.

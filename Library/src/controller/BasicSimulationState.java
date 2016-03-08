@@ -24,16 +24,16 @@ public class BasicSimulationState implements SimulationState {
 		if(societiesMap == null) {
 			societiesMap = new HashMap<String, Society>();
 		}
-		if(societiesMap.containsKey(society.getName()) || societies.contains(society)) {
+		if(societiesMap.containsKey(society.getId()) || societies.contains(society)) {
 			throw new IllegalStateException("Society already inserted.");
 		}
-		societiesMap.put(society.getName(), society);
+		societiesMap.put(society.getId(), society);
 		societies.add(society);
 	}
 
 	@Override public void removeSociety(Society society) {
 		societies.remove(society);
-		societiesMap.remove(society.getName());
+		societiesMap.remove(society.getId());
 	}
 
 	@Override public Set<Society> getSocieties() {
@@ -41,29 +41,8 @@ public class BasicSimulationState implements SimulationState {
 	}
 
 	//TODO: Appears to be returning null where it shouldn't.
-	@Override public Society getSociety(String name) {
-		String[] names = name.split("\\.");
-		Society result = societiesMap.get(names[0]);
-		for(int i=1; i < names.length; i++) {
-			boolean found = false;
-			if(result.getSocieties() != null) {
-				for(Society s : result.getSocieties()) {
-					if(s.getName().equals(names[i])) {
-						found = true;
-						result = s;
-						break;
-					}
-				}
-			}
-			else {
-				return null;
-			}
-			if(found) { }
-			else
-				return null;
-		}
-
-		return result;
+	@Override public Society getSociety(String id) {
+		return societiesMap.get(id);
 	}
 
 	@Override public void setRealState(State realState) {

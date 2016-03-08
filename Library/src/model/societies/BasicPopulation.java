@@ -51,7 +51,7 @@ public class BasicPopulation implements Population {
 	}
 
 	@Override public String toString() {
-		String result = name;
+		String result = id + " (" + name + ")";
 		DecimalFormat df = new DecimalFormat("#.####");
 		df.setRoundingMode(RoundingMode.HALF_DOWN);
 		result += " (size = " + df.format(size) + ")";
@@ -61,8 +61,8 @@ public class BasicPopulation implements Population {
 	@Override public boolean equals(Object o) {
 		if(o instanceof Society) {
 			Society society = (Society) o;
-			String socName = society.getName();
-			return name.equals(socName);
+			String socId = society.getId();
+			return id.equals(socId);
 		}
 		else {
 			return false;
@@ -70,6 +70,6 @@ public class BasicPopulation implements Population {
 	}
 
 	@Override public int hashCode() {
-		return name.hashCode();
+		return id.hashCode();
 	}
 }

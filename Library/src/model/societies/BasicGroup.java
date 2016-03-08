@@ -55,13 +55,13 @@ public class BasicGroup implements Group {
 	}
 
 	@Override public String toString() {
-		String result = name;
+		String result = id + " (" + name + ")";
 		DecimalFormat df = new DecimalFormat("#.####");
 		df.setRoundingMode(RoundingMode.HALF_DOWN);
 		result += " (size = " + df.format(getSize()) + ")\n";
 		Iterator<Society> iterator = societies.iterator();
 		while(iterator.hasNext()) {
-			result += name + "." + iterator.next();
+			result += name + "->" + iterator.next();
 			if(iterator.hasNext()) {
 				result += "\n";
 			}
@@ -72,8 +72,8 @@ public class BasicGroup implements Group {
 	@Override public boolean equals(Object o) {
 		if(o instanceof Society) {
 			Society society = (Society) o;
-			String socName = society.getName();
-			return name.equals(socName);
+			String socId = society.getId();
+			return id.equals(socId);
 		}
 		else {
 			return false;
@@ -81,6 +81,6 @@ public class BasicGroup implements Group {
 	}
 
 	@Override public int hashCode() {
-		return name.hashCode();
+		return id.hashCode();
 	}
 }

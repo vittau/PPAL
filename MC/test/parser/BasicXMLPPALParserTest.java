@@ -175,7 +175,7 @@ public class BasicXMLPPALParserTest {
 		simulationState.removeSociety(a);
 		simulationState.insertSociety(newGroup);
 
-		Society a_old = simulationState.getSociety("a.a_o");
+		Society a_old = simulationState.getSociety("a_o");
 
 		//Checking if the old society does not know the announced proposition.
 		BasicKnowledgeOperator bko = new BasicKnowledgeOperator(a_old.getSocietyModel(), bh1);
