@@ -32,7 +32,7 @@ public class BasicClassesTest {
 		final StateModel stm = new BasicStateModel(s0, s1, s2);
 		final SocietyModel sm = new BasicSocietyModel(stm);
 
-		Society society = new BasicPopulation("soc", sm, 20);
+		Society society = new BasicPopulation("soc", "soc", sm, 20);
 
 		sm.insertEdge(society, s0, s1);
 		sm.insertEdge(society, s0, s2);

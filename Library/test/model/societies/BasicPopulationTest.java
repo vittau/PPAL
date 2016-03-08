@@ -23,13 +23,13 @@ public class BasicPopulationTest {
 	public void mustHaveSizeGreaterThanZero() {
 		final double SIZE_P_1 = 0;
 		final double SIZE_P_2 = -10;
-		new BasicPopulation("p1", null, SIZE_P_1);
-		new BasicPopulation("p2", null, SIZE_P_2);
+		new BasicPopulation("p1", "p1", null, SIZE_P_1);
+		new BasicPopulation("p2", "p2", null, SIZE_P_2);
 	}
 
 	@Test
 	public void containsNothing() {
-		Population p = new BasicPopulation("p", null, 10);
+		Population p = new BasicPopulation("p", "p", null, 10);
 		assertNull(p.getSocieties());
 	}
 

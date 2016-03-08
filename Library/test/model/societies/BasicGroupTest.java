@@ -26,7 +26,7 @@ public class BasicGroupTest {
 
 	@Test
 	public void emptyGroupMustHaveSizeZero() {
-		Group group = new BasicGroup("group");
+		Group group = new BasicGroup("group", "group");
 		assertEquals(group.getSize(), 0D);
 	}
 	@Test
@@ -36,6 +36,9 @@ public class BasicGroupTest {
 
 		Society p1 = new Population() {
 			@Override public String getName() {
+				return "p1";
+			}
+			@Override public String getId() {
 				return "p1";
 			}
 			@Override public double getSize() {
@@ -53,6 +56,9 @@ public class BasicGroupTest {
 			@Override public String getName() {
 				return "p2";
 			}
+			@Override public String getId() {
+				return "p2";
+			}
 			@Override public double getSize() {
 				return SIZE_P2;
 			}
@@ -64,7 +70,7 @@ public class BasicGroupTest {
 			}
 		};
 
-		Group group = new BasicGroup("group", p1, p2);
+		Group group = new BasicGroup("group", "group", p1, p2);
 		assertEquals(group.getSize(), SIZE_P1 + SIZE_P2);
 	}
 
@@ -77,6 +83,9 @@ public class BasicGroupTest {
 			@Override public String getName() {
 				return "p1";
 			}
+			@Override public String getId() {
+				return "p1";
+			}
 			@Override public double getSize() {
 				return SIZE_P1;
 			}
@@ -92,6 +101,9 @@ public class BasicGroupTest {
 			@Override public String getName() {
 				return "p2";
 			}
+			@Override public String getId() {
+				return "p2";
+			}
 			@Override public double getSize() {
 				return SIZE_P2;
 			}
@@ -103,7 +115,7 @@ public class BasicGroupTest {
 			}
 		};
 
-		Group group = new BasicGroup("group", p1, p2);
+		Group group = new BasicGroup("group", "group", p1, p2);
 		assertTrue(group.getSocieties().containsAll(Arrays.asList(p1, p2)));
 		assertEquals(group.getSocieties().size(), 2);
 	}

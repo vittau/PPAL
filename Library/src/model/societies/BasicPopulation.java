@@ -12,6 +12,7 @@ import java.util.Set;
 public class BasicPopulation implements Population {
 
 	private final String name;
+	private final String id;
 	private final SocietyModel sm;
 	private final double size;
 
@@ -20,10 +21,11 @@ public class BasicPopulation implements Population {
 	 * @param name The name of this population.
 	 * @param size The size of the population. Must be greater than zero.
 	 */
-	public BasicPopulation(String name, SocietyModel sm, double size) throws  IllegalArgumentException {
+	public BasicPopulation(String name, String id, SocietyModel sm, double size) throws  IllegalArgumentException {
 		if(size <= 0)
 			throw new IllegalArgumentException("A population must have size greater than zero.");
 		this.name = name;
+		this.id = id;
 		this.sm = sm;
 		this.size = size;
 	}
@@ -42,6 +44,10 @@ public class BasicPopulation implements Population {
 
 	@Override public String getName() {
 		return name;
+	}
+
+	@Override public String getId() {
+		return id;
 	}
 
 	@Override public String toString() {

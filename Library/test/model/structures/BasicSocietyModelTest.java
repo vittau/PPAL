@@ -90,6 +90,9 @@ public class BasicSocietyModelTest {
 			@Override public String getName() {
 				return "soc";
 			}
+			@Override public String getId() {
+				return "soc";
+			}
 			@Override public double getSize() {
 				return 1;
 			}

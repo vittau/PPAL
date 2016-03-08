@@ -108,6 +108,9 @@ public class BasicKnowledgeOperatorTest {
 			@Override public String getName() {
 				return "sc";
 			}
+			@Override public String getId() {
+				return "sc";
+			}
 			@Override public double getSize() {
 				return 42;
 			}
@@ -212,6 +215,9 @@ public class BasicKnowledgeOperatorTest {
 			@Override public String getName() {
 				return "pop1";
 			}
+			@Override public String getId() {
+				return "pop1";
+			}
 			@Override public double getSize() {
 				return 70;
 			}
@@ -251,6 +257,9 @@ public class BasicKnowledgeOperatorTest {
 		//A population who doesn't know p in state s.
 		final Society pop2 = new Society() {
 			@Override public String getName() {
+				return "pop2";
+			}
+			@Override public String getId() {
 				return "pop2";
 			}
 			@Override public double getSize() {
@@ -295,6 +304,9 @@ public class BasicKnowledgeOperatorTest {
 		//This group contains populations pop1 and pop2.
 		final Society group = new Society() {
 			@Override public String getName() {
+				return "group";
+			}
+			@Override public String getId() {
 				return "group";
 			}
 			@Override public double getSize() {

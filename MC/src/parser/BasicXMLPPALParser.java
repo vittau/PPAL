@@ -241,7 +241,7 @@ public class BasicXMLPPALParser implements PPALParser {
 
 		SocietyModel sm = new BasicSocietyModel(stm);
 		for(String socName : socSizes.keySet()) {
-			Society soc = new BasicPopulation(socName, sm, socSizes.get(socName));
+			Society soc = new BasicPopulation(socName, socName, sm, socSizes.get(socName));
 			simState.insertSociety(soc);
 			Set<Proposition> socPropsMap = propsMap.get(socName);
 			for(State s1 : originalStates) {

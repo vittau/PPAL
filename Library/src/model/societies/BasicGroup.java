@@ -15,6 +15,7 @@ import java.util.Set;
 public class BasicGroup implements Group {
 
 	private final String name;
+	private final String id;
 	private Set<Society> societies;
 
 	/**
@@ -22,8 +23,9 @@ public class BasicGroup implements Group {
 	 * @param name The name of this group.
 	 * @param societies An array of societies. Can be empty.
 	 */
-	public BasicGroup(String name, Society... societies) {
+	public BasicGroup(String name, String id, Society... societies) {
 		this.name = name;
+		this.id = id;
 		this.societies = new HashSet<Society>(societies.length);
 		Collections.addAll(this.societies, societies);
 	}
@@ -46,6 +48,10 @@ public class BasicGroup implements Group {
 
 	@Override public String getName() {
 		return name;
+	}
+
+	@Override public String getId() {
+		return id;
 	}
 
 	@Override public String toString() {
