@@ -33,7 +33,6 @@ public class BasicSimulationState implements SimulationState {
 		return new HashSet<Society>(societiesMap.values());
 	}
 
-	//TODO: Appears to be returning null where it shouldn't.
 	@Override public Society getSociety(String id) {
 		return societiesMap.get(id);
 	}

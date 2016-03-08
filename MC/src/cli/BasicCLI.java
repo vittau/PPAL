@@ -178,7 +178,6 @@ public class BasicCLI {
 		}
 	}
 
-	//TODO: Do I really need model? Does it make sense to announce to a model of a different society than the one being announced to?
 	@Command(description = "Announcement operator.")
 	public void announce(
 			@Param(name = "model", description = "Name of the society whose model will be used in the announcement.")
@@ -219,7 +218,7 @@ public class BasicCLI {
 
 			Group newGroup = BasicAnnouncement.announce(pop, pre, ratioD);
 
-			//TODO: Check for bugs here. The resulting group appears to not have the new populations correctly.
+			//TODO: Check for bugs here.
 			String[] socMparents = model.split("\\.");
 			if(socMparents.length == 1) {
 				simulationState.removeSociety(pop);
