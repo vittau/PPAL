@@ -51,6 +51,7 @@ public class BasicDisjunctionOperatorTest {
 			@Override public String getId() {
 				return "soc";
 			}
+
 			@Override public double getSize() {
 				return 42; //Not tested.
 			}

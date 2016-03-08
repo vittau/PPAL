@@ -11,7 +11,8 @@ import java.util.*;
 public class BasicSocietyModel implements SocietyModel {
 
 	private StateModel stateModel;
-	private Map<Society, Map<State, Set<State>>> edgeMatrix;
+	private Map<String, Map<State, Set<State>>> edgeMatrix;
+	private Map<String, Society> socMap;
 
 	/**
 	 * Constructs a basic society model out of a state model.
@@ -21,7 +22,8 @@ public class BasicSocietyModel implements SocietyModel {
 		if(stateModel.getStates().size() == 0)
 			throw new IllegalArgumentException("Must have at least one state");
 		this.stateModel = stateModel;
-		edgeMatrix = new HashMap<Society, Map<State, Set<State>>>();
+		edgeMatrix = new HashMap<String, Map<State, Set<State>>>();
+		socMap = new HashMap<String, Society>();
 	}
 
 	@Override public Set<State> getStates() {
@@ -29,13 +31,13 @@ public class BasicSocietyModel implements SocietyModel {
 	}
 
 	@Override public Set<State> getNeighbourStates(Society society, State state) throws  IllegalArgumentException {
-		if(!edgeMatrix.containsKey(society)) {
+		if(!edgeMatrix.containsKey(society.getName())) {
 			throw new IllegalArgumentException("Society not present in this model.");
 		}
 		if(!stateModel.getStates().contains(state)) {
 			throw new IllegalArgumentException("State not present in this model.");
 		}
-		Map<State, Set<State>> societyEdges = edgeMatrix.get(society);
+		Map<State, Set<State>> societyEdges = edgeMatrix.get(society.getName());
 
 		if(!societyEdges.containsKey(state)) {
 			return new HashSet<State>();
@@ -45,10 +47,11 @@ public class BasicSocietyModel implements SocietyModel {
 	}
 
 	@Override public void insertEdge(Society society, State s1, State s2) {
-		if(!edgeMatrix.containsKey(society)) {
-			edgeMatrix.put(society, new HashMap<State, Set<State>>());
+		if(!edgeMatrix.containsKey(society.getName())) {
+			edgeMatrix.put(society.getName(), new HashMap<State, Set<State>>());
+			socMap.put(society.getName(), society);
 		}
-		Map<State, Set<State>> societyEdges = edgeMatrix.get(society);
+		Map<State, Set<State>> societyEdges = edgeMatrix.get(society.getName());
 
 		if(!societyEdges.containsKey(s1)) {
 			societyEdges.put(s1, new HashSet<State>());
@@ -66,7 +69,7 @@ public class BasicSocietyModel implements SocietyModel {
 	@Override public boolean equals(Object o) {
 		if(o instanceof SocietyModel) {
 			SocietyModel sm = (SocietyModel) o;
-			for(Society s : edgeMatrix.keySet()) {
+			for(Society s : socMap.values()) {
 				for(State st : getStates()) {
 					try {
 						//Checking if the neighbour states for every state for every society exists in the other model as well.
@@ -85,7 +88,7 @@ public class BasicSocietyModel implements SocietyModel {
 	}
 
 	@Override public void trimEdges(Society society, Evaluable ev) {
-		Map<State, Set<State>> edges = edgeMatrix.get(society);
+		Map<State, Set<State>> edges = edgeMatrix.get(society.getName());
 		Iterator<Map.Entry<State, Set<State>>> iteratorEdges = edges.entrySet().iterator();
 		while(iteratorEdges.hasNext()) {
 			State st = iteratorEdges.next().getKey();
@@ -111,14 +114,14 @@ public class BasicSocietyModel implements SocietyModel {
 		}
 		BasicSocietyModel basicSocietyModel = new BasicSocietyModel(stateModel);
 
-		basicSocietyModel.edgeMatrix = new HashMap<Society, Map<State, Set<State>>>();
-		for(Society soc : edgeMatrix.keySet()) {
+		basicSocietyModel.edgeMatrix = new HashMap<String, Map<State, Set<State>>>();
+		for(String socName : edgeMatrix.keySet()) {
 			Map<State, Set<State>> new_map = new HashMap<State, Set<State>>();
-			for(State st : edgeMatrix.get(soc).keySet()) {
-				Set<State> new_set = new HashSet<State>(edgeMatrix.get(soc).get(st));
+			for(State st : edgeMatrix.get(socName).keySet()) {
+				Set<State> new_set = new HashSet<State>(edgeMatrix.get(socName).get(st));
 				new_map.put(st, new_set);
 			}
-			basicSocietyModel.edgeMatrix.put(soc, new_map);
+			basicSocietyModel.edgeMatrix.put(socName, new_map);
 		}
 
 		basicSocietyModel.stateModel = stateModel;
@@ -127,6 +130,7 @@ public class BasicSocietyModel implements SocietyModel {
 	}
 
 	@Override public void replaceSociety(Society oldSociety, Society newSociety) {
-		edgeMatrix.put(newSociety, edgeMatrix.remove(oldSociety));
+		edgeMatrix.put(newSociety.getName(), edgeMatrix.remove(oldSociety.getName()));
+		socMap.put(newSociety.getName(), socMap.remove(oldSociety.getName()));
 	}
 }

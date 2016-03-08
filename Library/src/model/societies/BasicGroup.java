@@ -72,8 +72,8 @@ public class BasicGroup implements Group {
 	@Override public boolean equals(Object o) {
 		if(o instanceof Society) {
 			Society society = (Society) o;
-			String socName = society.getName();
-			return id.equals(socName);
+			String socId = society.getId();
+			return id.equals(socId);
 		}
 		else {
 			return false;
@@ -81,6 +81,6 @@ public class BasicGroup implements Group {
 	}
 
 	@Override public int hashCode() {
-		return name.hashCode();
+		return id.hashCode();
 	}
 }

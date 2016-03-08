@@ -13,31 +13,24 @@ import java.util.Set;
  */
 public class BasicSimulationState implements SimulationState {
 
-	private Map<String, Society> societiesMap;
-	private Set<Society> societies;
-	private State realState;
+	private Map<String, Society> societiesMap;private State realState;
 
 	@Override public void insertSociety(Society society) throws IllegalStateException {
-		if(societies == null) {
-			societies = new HashSet<Society>();
-		}
 		if(societiesMap == null) {
 			societiesMap = new HashMap<String, Society>();
 		}
-		if(societiesMap.containsKey(society.getId()) || societies.contains(society)) {
+		if(societiesMap.containsKey(society.getId())) {
 			throw new IllegalStateException("Society already inserted.");
 		}
 		societiesMap.put(society.getId(), society);
-		societies.add(society);
 	}
 
 	@Override public void removeSociety(Society society) {
-		societies.remove(society);
 		societiesMap.remove(society.getId());
 	}
 
 	@Override public Set<Society> getSocieties() {
-		return societies;
+		return new HashSet<Society>(societiesMap.values());
 	}
 
 	//TODO: Appears to be returning null where it shouldn't.
