@@ -206,6 +206,10 @@ public class BasicCLI {
 			}
 
 			Society modelSoc = simulationState.getSociety(model);
+			if(modelSoc.getSocietyModel() == null) {
+				System.out.println("Only population models can be used (in the future, group models will be accepted).");
+				return;
+			}
 			Society soc = modelSoc.getSocietyModel().getSociety(population);
 			Population pop;
 			if (!(soc instanceof Population)) {
