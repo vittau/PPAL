@@ -205,7 +205,7 @@ public class BasicCLI {
 				return;
 			}
 
-			//TODO: Should fetch this in a way where populations are not mistaken with groups after announcements. Should probably be model here.
+			//TODO: Should fetch this from the SocietyModel (model) being announced to.
 			Society soc = simulationState.getSociety(population);
 			Population pop;
 			if (!(soc instanceof Population)) {
