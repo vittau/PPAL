@@ -28,9 +28,10 @@ import java.util.Set;
 public class BasicCLI {
 
 	private static final String CONSOLE_NAME = "ppalmc";
+	private static final String VERSION = "0.2.1";
 	private static final String HINT_TEXT =
 			"PPAL MODEL CHECKER\n" +
-			"0.2.1 (Second Flight) - by Vitor Machado (vittau.github.io)\n" +
+			VERSION + " (Second Flight) - by Vitor Machado (vittau.github.io)\n" +
 			"Enter \"?list\" for a list of available commands. For detailed info enter \"?help COMMAND_NAME\". Enter \"exit\" to quit.";
 
 	private final EvaluationFunction evf = new BasicEvaluationFunction();
@@ -39,7 +40,7 @@ public class BasicCLI {
 
 	@Command(description = "Current version of the PPAL Model Checker.")
 	public String version() {
-		return "0.1";
+		return VERSION;
 	}
 
 	@Command(description = "Open a model file.")
