@@ -35,7 +35,7 @@ public class BasicCLI {
 					" |  ___/|  ___/ /\\ \\ | |      | |\\/| |/ _ \\ / _` |/ _ \\ | | |    | '_ \\ / _ \\/ __| |/ / _ \\ '__|\n" +
 					" | |    | |  / ____ \\| |____  | |  | | (_) | (_| |  __/ | | |____| | | |  __/ (__|   <  __/ |   \n" +
 					" |_|    |_| /_/    \\_\\______| |_|  |_|\\___/ \\__,_|\\___|_|  \\_____|_| |_|\\___|\\___|_|\\_\\___|_|\n" +
-			"0.2 (Second Flight) - by Vitor Machado (vittau.github.io)\n" +
+			"0.2.1 (Second Flight) - by Vitor Machado (vittau.github.io)\n" +
 			"Enter \"?list\" for a list of available commands. For detailed info enter \"?help COMMAND_NAME\". Enter \"exit\" to quit.";
 
 	private final EvaluationFunction evf = new BasicEvaluationFunction();
