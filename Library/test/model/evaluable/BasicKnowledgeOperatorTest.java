@@ -80,6 +80,11 @@ public class BasicKnowledgeOperatorTest {
 		};
 
 		final SocietyModel m = new SocietyModel() {
+			@Override
+			public Society getSociety(String name) {
+				return null;
+			}
+
 			@Override public Set<State> getNeighbourStates(Society society, State state) {
 				return new HashSet<State>(Arrays.asList(s2, s3));
 			}
@@ -186,6 +191,11 @@ public class BasicKnowledgeOperatorTest {
 		};
 
 		final SocietyModel m = new SocietyModel() {
+			@Override
+			public Society getSociety(String name) {
+				return null;
+			}
+
 			@Override public Set<State> getNeighbourStates(Society society, State state) {
 				return new HashSet<State>(Arrays.asList(s2, s3));
 			}
@@ -230,6 +240,11 @@ public class BasicKnowledgeOperatorTest {
 		};
 
 		final SocietyModel m2 = new SocietyModel() {
+			@Override
+			public Society getSociety(String name) {
+				return null;
+			}
+
 			@Override public Set<State> getNeighbourStates(Society society, State state) {
 				return new HashSet<State>(Arrays.asList(s, s4));
 			}
@@ -274,6 +289,11 @@ public class BasicKnowledgeOperatorTest {
 		};
 
 		final SocietyModel gm = new SocietyModel() {
+			@Override
+			public Society getSociety(String name) {
+				return null;
+			}
+
 			@Override public Set<State> getNeighbourStates(Society society, State state) {
 				if(society == pop1)
 					return pop1.getSocietyModel().getNeighbourStates(society, state);

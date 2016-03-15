@@ -21,6 +21,11 @@ public class BasicNegationOperatorTest {
 
 	@BeforeTest public void setUpTest() {
 		m = new SocietyModel() {
+			@Override
+			public Society getSociety(String name) {
+				return null;
+			}
+
 			@Override public Set<State> getNeighbourStates(Society society, State state) {
 				return null; //Not tested.
 			}

@@ -11,6 +11,12 @@ import java.util.Set;
 public interface SocietyModel extends StateModel, Cloneable {
 
 	/**
+	 * Fetches a society from this model by a given name.
+	 * @param name Name of the society to fetch.
+	 * @return The society with the given name, or null if it is not found.
+	 */
+	Society getSociety(String name);
+	/**
 	 * Set of states connected to a given state by edges of a given society.
 	 *
 	 * @param society Edges representing this society will be considered.

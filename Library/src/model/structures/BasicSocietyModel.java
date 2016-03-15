@@ -26,6 +26,11 @@ public class BasicSocietyModel implements SocietyModel {
 		socMap = new HashMap<String, Society>();
 	}
 
+	@Override
+	public Society getSociety(String name) {
+		return socMap.get(name);
+	}
+
 	@Override public Set<State> getStates() {
 		return stateModel.getStates();
 	}
@@ -124,6 +129,11 @@ public class BasicSocietyModel implements SocietyModel {
 			basicSocietyModel.edgeMatrix.put(socName, new_map);
 		}
 
+		basicSocietyModel.socMap = new HashMap<String, Society>();
+		for(String socName : socMap.keySet()) {
+			basicSocietyModel.socMap.put(socName, socMap.get(socName));
+		}
+
 		basicSocietyModel.stateModel = stateModel;
 
 		return basicSocietyModel;
@@ -131,6 +141,6 @@ public class BasicSocietyModel implements SocietyModel {
 
 	@Override public void replaceSociety(Society oldSociety, Society newSociety) {
 		edgeMatrix.put(newSociety.getName(), edgeMatrix.remove(oldSociety.getName()));
-		socMap.put(newSociety.getName(), socMap.remove(oldSociety.getName()));
+		socMap.put(newSociety.getName(), newSociety);
 	}
 }

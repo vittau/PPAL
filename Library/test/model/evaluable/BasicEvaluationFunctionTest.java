@@ -49,6 +49,11 @@ public class BasicEvaluationFunctionTest {
 			}
 		};
 		SocietyModel societyModel = new SocietyModel() {
+			@Override
+			public Society getSociety(String name) {
+				return null;
+			}
+
 			@Override public Set<State> getNeighbourStates(Society society, State state) {
 				return null; //This is not tested.
 			}

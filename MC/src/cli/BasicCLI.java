@@ -205,8 +205,8 @@ public class BasicCLI {
 				return;
 			}
 
-			//TODO: Should fetch this from the SocietyModel (model) being announced to.
-			Society soc = simulationState.getSociety(population);
+			Society modelSoc = simulationState.getSociety(model);
+			Society soc = modelSoc.getSocietyModel().getSociety(population);
 			Population pop;
 			if (!(soc instanceof Population)) {
 				//TODO: Implement group announcements.
