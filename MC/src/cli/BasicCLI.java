@@ -184,8 +184,6 @@ public class BasicCLI {
 			String model,
 			@Param(name="ratio", description = "Ratio of the announcement.")
 			String ratio,
-			@Param(name = "population", description = "Population who will receive the announcement.")
-			String population,
 			@Param(name = "precondition", description = "Proposition to be assessed as precondition.")
 			String precondition
 	) {
@@ -214,19 +212,8 @@ public class BasicCLI {
 				System.out.println("Only population models can be used (in the future, group models will be accepted).");
 				return;
 			}
-			Society soc = modelSoc.getSocietyModel().getSociety(population);
-			if(soc == null) {
-				System.out.println("Population \"" + population + "\" not found.");
-				return;
-			}
-			Population pop;
-			if (!(soc instanceof Population)) {
-				//TODO: Implement group announcements.
-				System.out.println("Only populations can be announced to (in the future, group announcements will be implemented).");
-				return;
-			}
-			else
-				pop = (Population) soc;
+
+			Population pop = (Population) modelSoc;
 
 			Proposition pre = new BasicProposition(precondition, evf);
 
@@ -244,7 +231,7 @@ public class BasicCLI {
 				socMparent.getSocieties().remove(pop);
 				socMparent.getSocieties().add(newGroup);
 			}
-			System.out.println("\"" + precondition + "\" announced to \"" + population + "\" with ratio " + ratio + " successfully.");
+			System.out.println("\"" + precondition + "\" announced to \"" + model + "\" with ratio " + ratio + " successfully.");
 		}
 	}
 
