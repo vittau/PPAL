@@ -29,12 +29,7 @@ public class BasicCLI {
 
 	private static final String CONSOLE_NAME = "ppalmc";
 	private static final String HINT_TEXT =
-			"  _____  _____        _        __  __           _      _    _____ _               _             \n" +
-					" |  __ \\|  __ \\ /\\   | |      |  \\/  |         | |    | |  / ____| |             | |            \n" +
-					" | |__) | |__) /  \\  | |      | \\  / | ___   __| | ___| | | |    | |__   ___  ___| | _____ _ __ \n" +
-					" |  ___/|  ___/ /\\ \\ | |      | |\\/| |/ _ \\ / _` |/ _ \\ | | |    | '_ \\ / _ \\/ __| |/ / _ \\ '__|\n" +
-					" | |    | |  / ____ \\| |____  | |  | | (_) | (_| |  __/ | | |____| | | |  __/ (__|   <  __/ |   \n" +
-					" |_|    |_| /_/    \\_\\______| |_|  |_|\\___/ \\__,_|\\___|_|  \\_____|_| |_|\\___|\\___|_|\\_\\___|_|\n" +
+			"PPAL MODEL CHECKER\n" +
 			"0.2.1 (Second Flight) - by Vitor Machado (vittau.github.io)\n" +
 			"Enter \"?list\" for a list of available commands. For detailed info enter \"?help COMMAND_NAME\". Enter \"exit\" to quit.";
 
