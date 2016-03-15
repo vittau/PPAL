@@ -237,7 +237,8 @@ public class BasicCLI {
 		try {
 			ShellFactory.createConsoleShell(CONSOLE_NAME, HINT_TEXT, new BasicCLI()).commandLoop();
 		}
-		catch(NullPointerException npe) { //Why does this happen when I kill the process?
+		catch(IOException e) {
+			e.printStackTrace();
 			System.exit(-1);
 		}
 	}
