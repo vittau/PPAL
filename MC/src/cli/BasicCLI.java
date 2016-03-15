@@ -206,11 +206,19 @@ public class BasicCLI {
 			}
 
 			Society modelSoc = simulationState.getSociety(model);
+			if(modelSoc == null) {
+				System.out.println("Model \"" + model + "\" not found.");
+				return;
+			}
 			if(modelSoc.getSocietyModel() == null) {
 				System.out.println("Only population models can be used (in the future, group models will be accepted).");
 				return;
 			}
 			Society soc = modelSoc.getSocietyModel().getSociety(population);
+			if(soc == null) {
+				System.out.println("Population \"" + population + "\" not found.");
+				return;
+			}
 			Population pop;
 			if (!(soc instanceof Population)) {
 				//TODO: Implement group announcements.
