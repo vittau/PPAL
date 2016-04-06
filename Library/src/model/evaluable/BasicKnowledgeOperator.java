@@ -34,7 +34,7 @@ public class BasicKnowledgeOperator implements TernaryOperator {
 	 * @param s State to evaluate on.
 	 * @return Evaluation. A real value ranging from 0.0 to 1.0.
 	 */
-	private  double evalKG(Society soc, State s) {
+	private double evalKG(Society soc, State s) {
 		double result = 0.0;
 		for(Society sc : soc.getSocieties()) {
 			BasicKnowledgeOperator bko = new BasicKnowledgeOperator(sm, ev);
