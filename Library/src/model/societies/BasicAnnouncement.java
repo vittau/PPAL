@@ -14,7 +14,7 @@ public class BasicAnnouncement {
 	 * @param pre   Pre-condition of the announcement. Used to trim the model.
 	 * @param ratio Ratio of the population which will receive the announcement.
 	 * @return Group containing two populations, one that received the announcement, and one that did not.
-	 * @throws IllegalArgumentException If the ration is not between 0.0 and 1.0 (both inclusive).
+	 * @throws IllegalArgumentException If the ratio is not between 0.0 and 1.0 (both inclusive).
 	 */
 	public static Group announce(Population pop, Evaluable pre, double ratio) throws IllegalArgumentException {
 
