@@ -2,7 +2,6 @@
   <library name="xom-1.2.10">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/xom-1.2.10.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/asg.cliche-110413.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="http://www.xom.nu/apidocs/" />
