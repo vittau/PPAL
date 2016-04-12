@@ -15,5 +15,10 @@ public class ExpSubshell implements ShellDependent {
 		this.theShell = shell;
 	}
 
-	//TODO: Implement operators using subshell. Use processLine method from cliche.
+	public double eval(String leftOperand, String operator, String rightOperand) {
+
+		//TODO: Implement sub-expressions using subshells. Also, use processLine method from cliche instead of commandLoop.
+
+		return 0.0;
+	}
 }
