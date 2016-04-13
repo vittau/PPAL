@@ -2,6 +2,8 @@ package cli;
 
 import asg.cliche.Shell;
 import asg.cliche.ShellDependent;
+import model.societies.Society;
+import model.structures.State;
 
 /**
  * Created by Vitor on 12/04/2016.
@@ -15,9 +17,22 @@ public class ExpSubshell implements ShellDependent {
 		this.theShell = shell;
 	}
 
-	public double eval(String leftOperand, String operator, String rightOperand) {
+	public double eval(Society soc, State st, String leftOperand, String operator, String rightOperand) {
 
-		//TODO: Implement sub-expressions using subshells. Also, use processLine method from cliche instead of commandLoop.
+		if(leftOperand.startsWith("$")) {
+			//TODO: Subshell here. Also, use processLine method from cliche instead of commandLoop.
+		}
+		else {
+			//TODO: Evaluate here.
+		}
+		if(rightOperand.startsWith("$")) {
+			//TODO: Subshell here. Also, use processLine method from cliche instead of commandLoop.
+		}
+		else {
+			//TODO: Evaluate here.
+		}
+
+		//TODO: Evaluate operator here.
 
 		return 0.0;
 	}
