@@ -18,8 +18,10 @@ import parser.PPALParser;
 import java.io.File;
 import java.io.IOException;
 import java.math.RoundingMode;
+import java.security.InvalidParameterException;
 import java.text.DecimalFormat;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -230,6 +232,67 @@ public class BasicCLI {
 			}
 			System.out.println("\"" + precondition + "\" announced to \"" + model + "\" with ratio " + ratio + " successfully.");
 		}
+	}
+
+	//TODO: Create variations of announce and knows for unary and binary operators.
+
+	//TODO: Create command operate to use simple operators.
+
+	@SuppressWarnings("Duplicates")
+	public Evaluable recursiveEval(String leftOperand, String operator, String rightOperand) throws InvalidParameterException {
+
+		Evaluable left = null, right;
+
+		Scanner s = new Scanner(System.in);
+
+		if(leftOperand != null) {
+			if(leftOperand.startsWith("$")) {
+				String varName = leftOperand.substring(1);
+				System.out.println(varName + "> ");
+				do {
+					String[] split = s.nextLine().split(" ");
+					if(split.length == 2) {
+						return recursiveEval(null, split[0], split[1]);
+					} else if(split.length == 3) {
+						return recursiveEval(split[0], split[1], split[2]);
+					}
+				}
+				while(true);
+			} else {
+				left = new BasicProposition(leftOperand, evf);
+			}
+		}
+		if(rightOperand.startsWith("$")) {
+			String varName = rightOperand.substring(1);
+			System.out.println(varName + "> ");
+			do {
+				String[] split = s.nextLine().split(" ");
+				if(split.length == 2) {
+					return recursiveEval(null, split[0], split[1]);
+				} else if(split.length == 3) {
+					return recursiveEval(split[0], split[1], split[2]);
+				}
+			}
+			while(true);
+		} else {
+			right = new BasicProposition(rightOperand, evf);
+		}
+
+		String opLower = operator.toLowerCase();
+		if(left != null) {
+			if(opLower.equals("and") || opLower.equals("&")) {
+				return new BasicConjunctionOperator(left, right);
+			} else if(opLower.equals("or") || opLower.equals("|")) {
+				return new BasicDisjunctionOperator(left, right);
+			} else if(opLower.equals("imp") || opLower.equals("->")) {
+				return new BasicImplicationOperator(BasicImplicationOperator.DEFAULT_Z_VALUE, left, right);
+			}
+		} else {
+			if(opLower.equals("not") || opLower.equals("!")) {
+				return new BasicNegationOperator(right);
+			}
+		}
+		throw new InvalidParameterException("Invalid parameters.");
 	}
 
 	//TODO: Implement the rest of the basic command-line user interface.

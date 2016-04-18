@@ -3,9 +3,7 @@ package parser;
 import combinatorics.SetOps;
 import controller.BasicSimulationState;
 import controller.SimulationState;
-import model.evaluable.BasicProposition;
-import model.evaluable.EvaluationFunction;
-import model.evaluable.Proposition;
+import model.evaluable.*;
 import model.societies.BasicPopulation;
 import model.societies.Society;
 import model.structures.*;
@@ -248,12 +246,12 @@ public class BasicXMLPPALParser implements PPALParser {
 				for(State s2 : originalStates) {
 					if(s1 != s2) {
 						Set<Proposition> socProps = new HashSet<Proposition>();
-						for (Proposition p : s1.getPropositions()) {
-							if (socPropsMap.contains(p)) {
+						for(Proposition p : s1.getPropositions()) {
+							if(socPropsMap.contains(p)) {
 								socProps.add(p);
 							}
 						}
-						if (s2.getPropositions().containsAll(socProps)) {
+						if(s2.getPropositions().containsAll(socProps)) {
 							sm.insertEdge(soc, s1, s2);
 						}
 					}

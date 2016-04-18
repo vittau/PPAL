@@ -8,6 +8,7 @@ import model.structures.State;
  */
 public class BasicImplicationOperator implements BinaryOperator {
 
+	public static final double DEFAULT_Z_VALUE = 0.5;
 	private Evaluable ev;
 	private Evaluable ev2;
 	private double    z;
