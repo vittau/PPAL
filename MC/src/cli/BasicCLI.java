@@ -237,7 +237,7 @@ public class BasicCLI {
 	//TODO: Create variations of announce and knows for unary and binary operators.
 
 	@Command(description = "Boolean operators.")
-	public void operate(
+	public Double operate(
 			@Param(name = "society", description = "Society whose knowledge will be assessed.")
 			String society,
 			@Param(name = "state", description = "State where the evaluation will take place. Use & as separator for propositions.")
@@ -255,7 +255,7 @@ public class BasicCLI {
 			Society soc = simulationState.getSociety(society);
 			if(soc == null) {
 				System.out.println("Society \"" + society+ "\" not found.");
-				return;
+				return null;
 			}
 
 			String[] propsSt = state.split("&");
@@ -267,8 +267,10 @@ public class BasicCLI {
 			State st = new BasicState(setPropsSt.toArray(new Proposition[setPropsSt.size()]));
 
 			Evaluable evaluable = recursiveEval(leftOperand, operator, rightOperand);
-			System.out.println(evaluable.eval(soc, st));
+			return evaluable.eval(soc, st);
 		}
+
+		return null;
 	}
 
 	@Command(description = "Boolean operators.")
