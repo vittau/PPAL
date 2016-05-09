@@ -136,8 +136,78 @@ public class BasicCLI {
 		}
 	}
 
+	@Command(description = "Knowledge operator.")
+	public void knows(
+			@Param(name = "model", description = "Name of the society whose model will be used in evaluation.")
+			String model,
+			@Param(name = "state", description = "State where the evaluation will take place. Use & as separator for propositions.")
+			String state,
+			@Param(name = "society", description = "Society whose knowledge will be assessed.")
+			String society,
+			@Param(name = "left operand", description = "Left operand.")
+			String leftOperand,
+			@Param(name = "operator", description = "Operator (and/&, or/|, imp/->).")
+			String operator,
+			@Param(name = "right operand", description = "Right operand.")
+			String rightOperand
+	) {
+		if (simulationState == null) {
+			System.out.println("No model loaded. Enter \"?help open\" for more details on how to open a model.");
+		}
+		else {
+			Society socM = simulationState.getSociety(model);
+
+			if(socM == null) {
+				System.out.println("Society \"" + model + "\" not found.");
+				return;
+			}
+
+			Society soc = simulationState.getSociety(society);
+			if(soc == null) {
+				System.out.println("Society \"" + society + "\" not found.");
+				return;
+			}
+
+			//String[] propsSt = state.replace("{", "").replace("}", "").split(",");
+			String[] propsSt = state.split("&");
+			Set<Proposition> setPropsSt = new HashSet<Proposition>();
+			for (String propSt : propsSt) {
+				Proposition p = new BasicProposition(propSt.trim(), evf);
+				setPropsSt.add(p);
+			}
+			State st = new BasicState(setPropsSt.toArray(new Proposition[setPropsSt.size()]));
+
+			Evaluable evaluable = recursiveEval(leftOperand, operator, rightOperand);
+
+			DecimalFormat df = new DecimalFormat("#.####");
+			df.setRoundingMode(RoundingMode.HALF_DOWN);
+			Double knowsResult = knowsInside(socM, st, evaluable, soc);
+			if(knowsResult == null) {
+				return;
+			}
+			System.out.println(df.format(knowsResult));
+
+		}
+	}
+
+	@Command(description = "Knowledge operator.")
+	public void knows(
+			@Param(name = "model", description = "Name of the society whose model will be used in evaluation.")
+			String model,
+			@Param(name = "state", description = "State where the evaluation will take place. Use & as separator for propositions.")
+			String state,
+			@Param(name = "society", description = "Society whose knowledge will be assessed.")
+			String society,
+			@Param(name = "operator", description = "Operator (and/&, or/|, imp/->).")
+			String operator,
+			@Param(name = "right operand", description = "Right operand.")
+			String rightOperand
+	) {
+		knows(model, state, society, null, operator, rightOperand);
+	}
+
 	//TODO: This should probably happen inside BasicKnowledgeOperator itself.
-	private Double knowsInside(Society socM, State st, Proposition prop, Society soc) {
+	private Double knowsInside(Society socM, State st, Evaluable prop, Society soc) {
 
 		Double result;
 
@@ -234,7 +304,9 @@ public class BasicCLI {
 		}
 	}
 
-	//TODO: Create variations of announce and knows for unary and binary operators.
+
+
+	//TODO: Create variations of announce for unary and binary operators.
 
 	@Command(description = "Boolean operators.")
 	public Double operate(
