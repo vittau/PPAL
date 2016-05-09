@@ -236,12 +236,45 @@ public class BasicCLI {
 
 	//TODO: Create variations of announce and knows for unary and binary operators.
 
-	//TODO: Create command operate to use simple operators.
+	@Command(description = "Boolean operators.")
+	public void operate(
+			@Param(name = "society", description = "Society whose knowledge will be assessed.")
+			String society,
+			@Param(name = "state", description = "State where the evaluation will take place. Use & as separator for propositions.")
+			String state,
+			@Param(name = "left operand", description = "Left operand.")
+			String leftOperand,
+			@Param(name = "operator", description = "Operator (and/&, or/|, imp/->).")
+			String operator,
+			@Param(name = "right operand", description = "Right operand.")
+			String rightOperand
+	) {
+		if (simulationState == null) {
+			System.out.println("No model loaded. Enter \"?help open\" for more details on how to open a model.");
+		} else {
+			Society soc = simulationState.getSociety(society);
+			if(soc == null) {
+				System.out.println("Society \"" + society+ "\" not found.");
+				return;
+			}
+
+			String[] propsSt = state.split("&");
+			Set<Proposition> setPropsSt = new HashSet<Proposition>();
+			for (String propSt : propsSt) {
+				Proposition p = new BasicProposition(propSt.trim(), evf);
+				setPropsSt.add(p);
+			}
+			State st = new BasicState(setPropsSt.toArray(new Proposition[setPropsSt.size()]));
+
+			Evaluable evaluable = recursiveEval(leftOperand, operator, rightOperand);
+			System.out.println(evaluable.eval(soc, st));
+		}
+	}
 
 	@SuppressWarnings("Duplicates")
 	public Evaluable recursiveEval(String leftOperand, String operator, String rightOperand) throws InvalidParameterException {
 
-		Evaluable left = null, right;
+		Evaluable left = null, right = null;
 
 		Scanner s = new Scanner(System.in);
 
@@ -249,15 +282,18 @@ public class BasicCLI {
 			if(leftOperand.startsWith("$")) {
 				String varName = leftOperand.substring(1);
 				System.out.println(varName + "> ");
+				boolean doAgain = false;
 				do {
 					String[] split = s.nextLine().split(" ");
 					if(split.length == 2) {
-						return recursiveEval(null, split[0], split[1]);
+						left = recursiveEval(null, split[0], split[1]);
 					} else if(split.length == 3) {
-						return recursiveEval(split[0], split[1], split[2]);
+						left = recursiveEval(split[0], split[1], split[2]);
+					} else {
+						doAgain = true;
 					}
 				}
-				while(true);
+				while(doAgain);
 			} else {
 				left = new BasicProposition(leftOperand, evf);
 			}
@@ -265,15 +301,18 @@ public class BasicCLI {
 		if(rightOperand.startsWith("$")) {
 			String varName = rightOperand.substring(1);
 			System.out.println(varName + "> ");
+			boolean doAgain = false;
 			do {
 				String[] split = s.nextLine().split(" ");
 				if(split.length == 2) {
-					return recursiveEval(null, split[0], split[1]);
+					right = recursiveEval(null, split[0], split[1]);
 				} else if(split.length == 3) {
-					return recursiveEval(split[0], split[1], split[2]);
+					right = recursiveEval(split[0], split[1], split[2]);
+				} else {
+					doAgain = true;
 				}
 			}
-			while(true);
+			while(doAgain);
 		} else {
 			right = new BasicProposition(rightOperand, evf);
 		}
