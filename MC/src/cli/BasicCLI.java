@@ -271,6 +271,20 @@ public class BasicCLI {
 		}
 	}
 
+	@Command(description = "Boolean operators.")
+	public void operate(
+			@Param(name = "society", description = "Society whose knowledge will be assessed.")
+			String society,
+			@Param(name = "state", description = "State where the evaluation will take place. Use & as separator for propositions.")
+			String state,
+			@Param(name = "operator", description = "Operator (and/&, or/|, imp/->).")
+			String operator,
+			@Param(name = "right operand", description = "Right operand.")
+			String rightOperand
+	) {
+		operate(society, state, null, operator, rightOperand);
+	}
+
 	@SuppressWarnings("Duplicates")
 	public Evaluable recursiveEval(String leftOperand, String operator, String rightOperand) throws InvalidParameterException {
 
