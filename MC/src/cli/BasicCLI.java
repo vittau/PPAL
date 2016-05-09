@@ -296,8 +296,9 @@ public class BasicCLI {
 			if(leftOperand.startsWith("$")) {
 				String varName = leftOperand.substring(1);
 				System.out.println(varName + "> ");
-				boolean doAgain = false;
+				boolean doAgain;
 				do {
+					doAgain = false;
 					String[] split = s.nextLine().split(" ");
 					if(split.length == 2) {
 						left = recursiveEval(null, split[0], split[1]);
@@ -315,8 +316,9 @@ public class BasicCLI {
 		if(rightOperand.startsWith("$")) {
 			String varName = rightOperand.substring(1);
 			System.out.println(varName + "> ");
-			boolean doAgain = false;
+			boolean doAgain;
 			do {
+				doAgain = false;
 				String[] split = s.nextLine().split(" ");
 				if(split.length == 2) {
 					right = recursiveEval(null, split[0], split[1]);
