@@ -107,6 +107,12 @@ public class BasicCLI {
 				return;
 			}
 
+			Society soc = simulationState.getSociety(society);
+			if(soc == null) {
+				System.out.println("Society \"" + society + "\" not found.");
+				return;
+			}
+
 			//String[] propsSt = state.replace("{", "").replace("}", "").split(",");
 			String[] propsSt = state.split("&");
 			Set<Proposition> setPropsSt = new HashSet<Proposition>();
@@ -117,13 +123,6 @@ public class BasicCLI {
 			State st = new BasicState(setPropsSt.toArray(new Proposition[setPropsSt.size()]));
 
 			Proposition prop = new BasicProposition(proposition, evf);
-
-			Society soc = simulationState.getSociety(society);
-			if(soc == null) {
-				System.out.println("Society \"" + society + "\" not found.");
-				return;
-			}
-
 
 			DecimalFormat df = new DecimalFormat("#.####");
 			df.setRoundingMode(RoundingMode.HALF_DOWN);
@@ -303,8 +302,6 @@ public class BasicCLI {
 			System.out.println("\"" + precondition + "\" announced to \"" + model + "\" with ratio " + ratio + " successfully.");
 		}
 	}
-
-
 
 	//TODO: Create variations of announce for unary and binary operators.
 
