@@ -31,7 +31,7 @@ public class BasicCLI {
 
 	private static final String CONSOLE_NAME = "ppalmc";
 	private static final String VERSION = "0.3.0";
-	private static final String VERSION_CODENAME = "Second Flight";
+	private static final String VERSION_CODENAME = "Third Flight";
 	private static final String HINT_TEXT =
 			"PPAL MODEL CHECKER\n" +
 			VERSION + " (" + VERSION_CODENAME + ") - by Vitor Machado (vittau.github.io)\n" +
