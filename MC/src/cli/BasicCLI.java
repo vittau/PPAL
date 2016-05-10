@@ -199,10 +199,10 @@ public class BasicCLI {
 			String society,
 			@Param(name = "operator", description = "Operator (not/!).")
 			String operator,
-			@Param(name = "right operand", description = "Right operand.")
-			String rightOperand
+			@Param(name = "operand", description = "Operand.")
+			String operand
 	) {
-		knows(model, state, society, null, operator, rightOperand);
+		knows(model, state, society, null, operator, operand);
 	}
 
 	//TODO: This should probably happen inside BasicKnowledgeOperator itself.
@@ -350,10 +350,10 @@ public class BasicCLI {
 			String state,
 			@Param(name = "operator", description = "Operator (not/!).")
 			String operator,
-			@Param(name = "right operand", description = "Right operand.")
-			String rightOperand
+			@Param(name = "operand", description = "Operand.")
+			String operand
 	) {
-		operate(society, state, null, operator, rightOperand);
+		operate(society, state, null, operator, operand);
 	}
 
 	@SuppressWarnings("Duplicates")
