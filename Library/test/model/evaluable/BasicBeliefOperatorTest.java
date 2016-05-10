@@ -14,14 +14,15 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 /**
- * Created by Vitor on 05/07/2015.
+ * Created by Vitor on 10/05/2016.
  */
 @SuppressWarnings("Duplicates")
-public class BasicKnowledgeOperatorTest {
+public class BasicBeliefOperatorTest {
 
 	private static final double DELTA = 0.00001;
 
-	@BeforeTest public void setUpTest() {
+	@BeforeTest
+	public void setUpTest() {
 
 	}
 
@@ -31,7 +32,7 @@ public class BasicKnowledgeOperatorTest {
 	}
 
 	@Test
-	public void definitionsKP() {
+	public void definitionsBP() {
 		final Proposition p = new Proposition() {
 			@Override public boolean isNeg() {
 				return false;
@@ -130,14 +131,14 @@ public class BasicKnowledgeOperatorTest {
 			}
 		};
 
-		TernaryOperator knowOp = new BasicKnowledgeOperator(m, p);
+		TernaryOperator knowOp2 = new BasicBeliefOperator(m, q);
+		assertEquals(knowOp2.eval(sc, s), 0.66666, DELTA);
+		TernaryOperator knowOp = new BasicBeliefOperator(m, p);
 		assertEquals(knowOp.eval(sc, s), 1.0, DELTA);
-		TernaryOperator knowOp2 = new BasicKnowledgeOperator(m, q);
-		assertEquals(knowOp2.eval(sc, s), 0.0, DELTA);
 	}
 
 	@Test
-	public void definitionsKG() {
+	public void definitionsBG() {
 		final Proposition p = new Proposition() {
 			@Override public boolean isNeg() {
 				return false;
@@ -343,14 +344,14 @@ public class BasicKnowledgeOperatorTest {
 			}
 		};
 
-		TernaryOperator knowOp = new BasicKnowledgeOperator(gm, p);
+		TernaryOperator beliefOp = new BasicBeliefOperator(gm, p);
 		//I test this, but it's not strictly needed by definition.
-		assertEquals(knowOp.eval(group, s), 0.7, DELTA);
+		assertEquals(beliefOp.eval(group, s), 0.85, DELTA);
 		//The actual definitions are here.
-		double max = knowOp.eval(pop1, s);
-		assertTrue(knowOp.eval(group, s) <= max);
-		double min = knowOp.eval(pop2, s);
-		assertTrue(knowOp.eval(group, s) >= min);
+		double max = beliefOp.eval(pop1, s);
+		assertTrue(beliefOp.eval(group, s) <= max);
+		double min = beliefOp.eval(pop2, s);
+		assertTrue(beliefOp.eval(group, s) >= min);
 
 	}
 
