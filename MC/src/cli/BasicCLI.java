@@ -197,7 +197,7 @@ public class BasicCLI {
 			String state,
 			@Param(name = "society", description = "Society whose knowledge will be assessed.")
 			String society,
-			@Param(name = "operator", description = "Operator (and/&, or/|, imp/->).")
+			@Param(name = "operator", description = "Operator (not/!).")
 			String operator,
 			@Param(name = "right operand", description = "Right operand.")
 			String rightOperand
@@ -348,7 +348,7 @@ public class BasicCLI {
 			String society,
 			@Param(name = "state", description = "State where the evaluation will take place. Use & as separator for propositions.")
 			String state,
-			@Param(name = "operator", description = "Operator (and/&, or/|, imp/->).")
+			@Param(name = "operator", description = "Operator (not/!).")
 			String operator,
 			@Param(name = "right operand", description = "Right operand.")
 			String rightOperand
