@@ -246,6 +246,8 @@ public class BasicCLI {
 		}
 	}
 
+	//TODO: Implement belief operator commands.
+
 	@Command(description = "Announcement operator.")
 	public void announce(
 			@Param(name = "model", description = "Name of the society whose model will be used in the announcement.")
