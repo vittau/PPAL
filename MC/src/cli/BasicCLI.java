@@ -205,7 +205,7 @@ public class BasicCLI {
 		knows(model, state, society, null, operator, operand);
 	}
 
-	//TODO: This should probably happen inside BasicKnowledgeOperator itself.
+	//TODO: This should probably happen inside BasicKnowledgeOperator itself, but for groups it receives a null SocietyModel.
 	private Double knowsInside(Society socM, State st, Evaluable prop, Society soc) {
 
 		Double result;
