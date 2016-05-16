@@ -214,7 +214,7 @@ public class BasicCLI {
 
 		if(sm == null) { //Group
 			result = 0.0;
-			for(Society s : socM.getSocieties()) { //TODO: Check this. Probably not agreeing to the definition of the operator in the logic.
+			for(Society s : socM.getSocieties()) {
 				Double knowsResult = knowsInside(s, st, prop, soc);
 				if(knowsResult == null) {
 					return null;
