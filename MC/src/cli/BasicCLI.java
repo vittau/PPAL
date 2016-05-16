@@ -30,7 +30,7 @@ import java.util.Set;
 public class BasicCLI {
 
 	private static final String CONSOLE_NAME = "ppalmc";
-	private static final String VERSION = "0.3.0";
+	private static final String VERSION = "0.3.1";
 	private static final String VERSION_CODENAME = "Third Flight";
 	private static final String HINT_TEXT =
 			"PPAL MODEL CHECKER\n" +
@@ -246,7 +246,166 @@ public class BasicCLI {
 		}
 	}
 
-	//TODO: Implement belief operator commands.
+	@Command(description = "Belief operator.")
+	public void belief(
+			@Param(name = "model", description = "Name of the society whose model will be used in evaluation.")
+			String model,
+			@Param(name = "state", description = "State where the evaluation will take place. Use & as separator for propositions.")
+			String state,
+			@Param(name = "society", description = "Society whose belief will be assessed.")
+			String society,
+			@Param(name = "proposition", description = "Proposition to be assessed.")
+			String proposition
+	) {
+		if (simulationState == null) {
+			System.out.println("No model loaded. Enter \"?help open\" for more details on how to open a model.");
+		}
+		else {
+			Society socM = simulationState.getSociety(model);
+
+			if(socM == null) {
+				System.out.println("Society \"" + model + "\" not found.");
+				return;
+			}
+
+			Society soc = simulationState.getSociety(society);
+			if(soc == null) {
+				System.out.println("Society \"" + society + "\" not found.");
+				return;
+			}
+
+			//String[] propsSt = state.replace("{", "").replace("}", "").split(",");
+			String[] propsSt = state.split("&");
+			Set<Proposition> setPropsSt = new HashSet<Proposition>();
+			for (String propSt : propsSt) {
+				Proposition p = new BasicProposition(propSt.trim(), evf);
+				setPropsSt.add(p);
+			}
+			State st = new BasicState(setPropsSt.toArray(new Proposition[setPropsSt.size()]));
+
+			Proposition prop = new BasicProposition(proposition, evf);
+
+			DecimalFormat df = new DecimalFormat("#.####");
+			df.setRoundingMode(RoundingMode.HALF_DOWN);
+			Double beliefResult = beliefInside(socM, st, prop, soc);
+			if(beliefResult == null) {
+				return;
+			}
+			System.out.println(df.format(beliefResult));
+
+		}
+	}
+
+	@Command(description = "Belief operator.")
+	public void belief(
+			@Param(name = "model", description = "Name of the society whose model will be used in evaluation.")
+			String model,
+			@Param(name = "state", description = "State where the evaluation will take place. Use & as separator for propositions.")
+			String state,
+			@Param(name = "society", description = "Society whose belief will be assessed.")
+			String society,
+			@Param(name = "left operand", description = "Left operand.")
+			String leftOperand,
+			@Param(name = "operator", description = "Operator (and/&, or/|, imp/->).")
+			String operator,
+			@Param(name = "right operand", description = "Right operand.")
+			String rightOperand
+	) {
+		if (simulationState == null) {
+			System.out.println("No model loaded. Enter \"?help open\" for more details on how to open a model.");
+		}
+		else {
+			Society socM = simulationState.getSociety(model);
+
+			if(socM == null) {
+				System.out.println("Society \"" + model + "\" not found.");
+				return;
+			}
+
+			Society soc = simulationState.getSociety(society);
+			if(soc == null) {
+				System.out.println("Society \"" + society + "\" not found.");
+				return;
+			}
+
+			//String[] propsSt = state.replace("{", "").replace("}", "").split(",");
+			String[] propsSt = state.split("&");
+			Set<Proposition> setPropsSt = new HashSet<Proposition>();
+			for (String propSt : propsSt) {
+				Proposition p = new BasicProposition(propSt.trim(), evf);
+				setPropsSt.add(p);
+			}
+			State st = new BasicState(setPropsSt.toArray(new Proposition[setPropsSt.size()]));
+
+			Evaluable evaluable = recursiveEval(leftOperand, operator, rightOperand);
+
+			DecimalFormat df = new DecimalFormat("#.####");
+			df.setRoundingMode(RoundingMode.HALF_DOWN);
+			Double beliefResult = beliefInside(socM, st, evaluable, soc);
+			if(beliefResult == null) {
+				return;
+			}
+			System.out.println(df.format(beliefResult));
+
+		}
+	}
+
+	@Command(description = "Belief operator.")
+	public void belief(
+			@Param(name = "model", description = "Name of the society whose model will be used in evaluation.")
+			String model,
+			@Param(name = "state", description = "State where the evaluation will take place. Use & as separator for propositions.")
+			String state,
+			@Param(name = "society", description = "Society whose belief will be assessed.")
+			String society,
+			@Param(name = "operator", description = "Operator (not/!).")
+			String operator,
+			@Param(name = "operand", description = "Operand.")
+			String operand
+	) {
+		belief(model, state, society, null, operator, operand);
+	}
+
+	//TODO: This should probably happen inside BasicBeliefOperator itself, but for groups it would receive a null SocietyModel.
+	private Double beliefInside(Society socM, State st, Evaluable prop, Society soc) {
+
+		Double result;
+
+		SocietyModel sm = socM.getSocietyModel();
+
+		if(sm == null) { //Group
+			result = 0.0;
+			for(Society s : socM.getSocieties()) {
+				Double beliefResult = beliefInside(s, st, prop, soc);
+				if(beliefResult == null) {
+					return null;
+				}
+				result += beliefResult*s.getSize();
+			}
+			return result/socM.getSize();
+
+		}
+		else {
+			State actualState = null;
+			for (State smSt : sm.getStates()) {
+				if (st.equals(smSt))
+					actualState = smSt;
+			}
+			if (actualState == null) {
+				System.out.println("Error: No such state.");
+				return null;
+			}
+			BasicBeliefOperator bbo = new BasicBeliefOperator(sm, prop);
+
+			try {
+				return bbo.eval(soc, actualState);
+			}
+			catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+				return null;
+			}
+		}
+	}
 
 	@Command(description = "Announcement operator.")
 	public void announce(
