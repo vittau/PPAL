@@ -121,14 +121,23 @@ public class BasicXMLPPALParser implements PPALParser {
 			//String name = element.getAttributeValue("name");
 
 			Element elementSoc = element.getFirstChildElement("soc");
-			String idSoc = elementSoc.getAttributeValue("id");
+			if(elementSoc != null) {
+				String idSoc = elementSoc.getAttributeValue("id");
 
-			if(!societies.contains(idSoc)) {
-				throw new ParsingException("Society " + idSoc + " undeclared.");
+				if (!societies.contains(idSoc)) {
+					throw new ParsingException("Society " + idSoc + " undeclared.");
+				}
+
+				Set<Proposition> propsSet = propsMap.get(idSoc);
+				propsSet.add(new BasicProposition(idProp, evf));
 			}
-
-			Set<Proposition> propsSet = propsMap.get(idSoc);
-			propsSet.add(new BasicProposition(idProp, evf));
+			else {
+				if(propsMap.get("nosocietydefined") == null) {
+					propsMap.put("nosocietydefined", new HashSet<Proposition>());
+				}
+				Set<Proposition> nosocietydefined = propsMap.get("nosocietydefined");
+				nosocietydefined.add(new BasicProposition(idProp, evf));
+			}
 		}
 		return propsMap;
 	}
@@ -171,6 +180,9 @@ public class BasicXMLPPALParser implements PPALParser {
 	}
 
 	private boolean isStateValid(State state, Element restrictions) {
+		if(restrictions == null) {
+			return true;
+		}
 		Set<Proposition> props = state.getPropositions();
 		Set<String> propsNames = new HashSet<String>(props.size());
 		for(Proposition p : props)

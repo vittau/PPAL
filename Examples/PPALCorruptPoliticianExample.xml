@@ -1,0 +1,24 @@
+<?xml version = "1.0"?>
+<!DOCTYPE model SYSTEM "PPAL.dtd">
+<!-- Corrupt politician example using the PPAL DTD. -->
+<model version = "0.1" name = "Corrupt politician">
+
+	<societies>
+		<socdef id = "p" name = "Population" size="10"/>
+	</societies>
+
+	<propositions>
+		<propdef id = "l" name = "laundering" />
+		<propdef id = "b" name = "bribery" />
+	</propositions>
+
+	<states>
+		<comb />
+	</states>
+
+	<realstate>
+		<prop id = "l"/>
+		<prop id = "b"/>
+	</realstate>
+
+</model>

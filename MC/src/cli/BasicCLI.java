@@ -51,7 +51,8 @@ public class BasicCLI {
 			@Param(name = "path", description = "Absolute or relative path to the model file.")
 			String path
 	) {
-		File file = new File("./Examples./PPALExample.xml");
+		//File file = new File("./Examples./PPALExample.xml");
+		File file = new File("./Examples./PPALCorruptPoliticianExample.xml");
 		//File file = new File(path);
 
 		System.out.println("Opening file: " + path);
