@@ -31,7 +31,7 @@ import java.util.Set;
 public class BasicCLI {
 
 	private static final String CONSOLE_NAME = "ppalmc";
-	private static final String VERSION = "0.3.1";
+	private static final String VERSION = "0.3.2";
 	private static final String VERSION_CODENAME = "Third Flight";
 	private static final String HINT_TEXT =
 			"PPAL MODEL CHECKER\n" +
