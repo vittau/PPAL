@@ -17,7 +17,7 @@ public class BasicStateModel implements StateModel {
 	 */
 	public BasicStateModel(State ... states) throws IllegalArgumentException {
 		if(states.length == 0)
-			throw new IllegalArgumentException("Must have at least one state"); //TODO: Maybe not? How to model the corrupt politician example?
+			throw new IllegalArgumentException("Must have at least one state");
 		this.states = new HashSet<State>(states.length);
 		Collections.addAll(this.states, states);
 	}

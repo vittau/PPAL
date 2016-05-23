@@ -18,8 +18,7 @@ public class BasicState implements State {
 	 * @param prop An array of propositions. Must have at least one element.
 	 */
 	public BasicState(Proposition ... prop) throws IllegalArgumentException {
-		if(prop.length == 0)
-			throw new IllegalArgumentException("Must have at least one proposition");
+		//Maybe should have at least one proposition? If so, how to model the corrupt politician example?
 
 		this.propositions = new HashSet<Proposition>(prop.length);
 		for(Proposition p : prop) {
@@ -56,16 +55,13 @@ public class BasicState implements State {
 	@Override public String toString() {
 		String result =  "{";
 		Iterator<Proposition> iterator = propositions.iterator();
-		while(true) {
+		while(iterator.hasNext()) {
 			result += iterator.next().getName();
 			if(iterator.hasNext()) {
 				result += ", ";
 			}
-			else {
-				result += "}";
-				break;
-			}
 		}
+		result += "}";
 		return  result;
 	}
 }

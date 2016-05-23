@@ -160,7 +160,7 @@ public class BasicXMLPPALParser implements PPALParser {
 			/*EXAMPLES OF EXPECTED POWER SETS:
 			{ {ah0}, {bh0}, {ch0}, {ah0, bh0}, {ah0, ch0}, {bh0, ch0}, {ah0, bh0, ch0} , ... }*/
 			Set<Set<Proposition>> setsProp = SetOps.powerSet(allProps);
-			setsProp.remove(new HashSet<Proposition>()); //Remove empty set.
+			//setsProp.remove(new HashSet<Proposition>()); //Remove empty set.
 
 			for(Set<Proposition> setResult : setsProp) {
 				State plausibleState = new BasicState(setResult.toArray(new Proposition[setResult.size()]));

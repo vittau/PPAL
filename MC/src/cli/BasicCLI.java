@@ -21,6 +21,7 @@ import java.math.RoundingMode;
 import java.security.InvalidParameterException;
 import java.text.DecimalFormat;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -83,6 +84,38 @@ public class BasicCLI {
 			} else {
 				System.out.println("Invalid parameter. Enter \"?help print\" for more details.");
 			}
+		}
+	}
+
+	@Command(description = "Prints the model of a society.")
+	public void printModel(
+			@Param(name = "model", description = "Society whose model will be printed.")
+			String model
+	) {
+		if (simulationState == null) {
+			System.out.println("No model loaded. Enter \"?help open\" for more details on how to open a model.");
+		}
+
+		Society socM = simulationState.getSociety(model);
+
+		if(socM == null) {
+			System.out.println("Society \"" + model + "\" not found.");
+			return;
+		}
+
+		SocietyModel sModel = socM.getSocietyModel();
+		for(State st : sModel.getStates()) {
+			Set<State> neighbourStates = sModel.getNeighbourStates(socM, st);
+			System.out.print(st);
+			System.out.print(" -> ");
+			Iterator<State> iterator = neighbourStates.iterator();
+			while(iterator.hasNext()) {
+				System.out.print(iterator.next());
+				if(iterator.hasNext()) {
+					System.out.print(", ");
+				}
+			}
+			System.out.println("");
 		}
 	}
 
