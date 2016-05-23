@@ -104,10 +104,16 @@ public class BasicCLI {
 		}
 
 		SocietyModel sModel = socM.getSocietyModel();
+		if(sModel == null) {
+			System.out.println("Please choose a population directly instead of a group.");
+			return;
+		}
 		for(State st : sModel.getStates()) {
 			Set<State> neighbourStates = sModel.getNeighbourStates(socM, st);
 			System.out.print(st);
-			System.out.print(" -> ");
+			if(neighbourStates.size() > 0) {
+				System.out.print(" <-> ");
+			}
 			Iterator<State> iterator = neighbourStates.iterator();
 			while(iterator.hasNext()) {
 				System.out.print(iterator.next());
