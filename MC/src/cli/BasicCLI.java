@@ -53,8 +53,8 @@ public class BasicCLI {
 			String path
 	) {
 		//File file = new File("./Examples./PPALExample.xml");
-		File file = new File("./Examples./PPALCorruptPoliticianExample.xml");
-		//File file = new File(path);
+		//File file = new File("./Examples./PPALCorruptPoliticianExample.xml");
+		File file = new File(path);
 
 		System.out.println("Opening file: " + path);
 
