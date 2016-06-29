@@ -489,16 +489,16 @@ public class BasicCLI {
 			Group newGroup = BasicAnnouncement.announce(pop, pre, ratioD);
 
 			String parent = model.replaceFirst("_.$", "");
-			if(parent.equals(model)) {
-				simulationState.removeSociety(pop);
-				simulationState.insertSociety(newGroup);
-				for(Society s : newGroup.getSocieties())
-					simulationState.insertSociety(s);
-			}
-			else {
+			if(!parent.equals(model)) {
 				Society socMparent = simulationState.getSociety(parent);
 				socMparent.getSocieties().remove(pop);
 				socMparent.getSocieties().add(newGroup);
+
+			}
+			simulationState.removeSociety(pop);
+			simulationState.insertSociety(newGroup);
+			for(Society s : newGroup.getSocieties()) {
+				simulationState.insertSociety(s);
 			}
 			System.out.println("\"" + precondition + "\" announced to \"" + model + "\" with ratio " + ratio + " successfully.");
 		}
